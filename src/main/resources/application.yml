@@ -1,8 +1,0 @@
-server:
-  port: 8082
-  servlet:
-    context-path: /shop
-spring:
-  datasource:
-    password: root
-    url: jdbc:mysql://localhost:3306/java?user=root
