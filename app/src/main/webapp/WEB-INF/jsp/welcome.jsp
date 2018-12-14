@@ -23,7 +23,7 @@
                 <div class="col-sm-4">
                     <h2 class="mt-4"><spring:message code="contactus"/></h2>
                     <address>
-                        <strong>Java Inc.</strong>
+                        <strong><spring:message code="incorporationName"/></strong>
                         <br>3481 Some Place
                         <br>Some Address, CA 90810
                         <br>

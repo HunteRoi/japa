@@ -2,10 +2,9 @@
 <%@ include file="include/importTags.jsp" %>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <form:form class="form-signin" method="POST" modelAttribute="userDetails" action="LOGIN_REQUEST">
+        <form:form class="form-signin" method="POST" modelAttribute="userDetails">
             <div class="text-center mb-4">
                 <img class="mb-4" src='<spring:url value="/images/japa-logo.com"/>' alt="Japa logo" width="72" height="72">
                 <h1 class="h3 mb-3 font-weight-normal">Japa.com</h1>
