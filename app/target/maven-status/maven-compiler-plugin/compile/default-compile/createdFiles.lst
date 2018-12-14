@@ -1,0 +1,5 @@
+com\japa\Japa\controller\Constants.class
+com\japa\Japa\controller\WelcomeController.class
+com\japa\Japa\configuration\TilesConfiguration.class
+com\japa\Japa\JapaApplication.class
+com\japa\Japa\configuration\MainConfiguration.class
