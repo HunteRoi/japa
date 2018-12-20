@@ -29,45 +29,18 @@
                         <li class="nav-item">
                             <a class="big-a nav-link active" href="#"><spring:message code="home"/> <span class="sr-only">(current)</span></a>
                         </li>
+                        <c:forEach var="category" items="${categories}">
                         <li class="nav-item dropdown">
                             <a class="big-a nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Mangas
+                                    ${category.getName()}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="big-a dropdown-item" href="#">Kodomo</a>
-                                <a class="big-a dropdown-item" href="#">Shōnen</a>
-                                <a class="big-a dropdown-item" href="#">Shōjo</a>
-                                <a class="big-a dropdown-item" href="#">Seinen</a>
-                                <a class="big-a dropdown-item" href="#">Josei</a>
-                                <a class="big-a dropdown-item" href="#">Seijin</a>
+                                <c:forEach var="subCategory" items="${category.getSubCategories()}">
+			                        <a class="big-a dropdown-item" href="#">${subCategory.getName()}</a>
+                                </c:forEach>
                             </div>
                         </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="big-a nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Animes
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="big-a dropdown-item" href="#">Ecchi</a>
-                                <a class="big-a dropdown-item" href="#">Josei</a>
-                                <a class="big-a dropdown-item" href="#">Hentai</a>
-                                <a class="big-a dropdown-item" href="#">Isekai</a>
-                                <a class="big-a dropdown-item" href="#">Shoujo</a>
-                                <a class="big-a dropdown-item" href="#">Shonen</a>
-                                <a class="big-a dropdown-item" href="#">Yuri</a>
-                                <a class="big-a dropdown-item" href="#">Yaoi</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="big-a nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Goodies
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="big-a dropdown-item" href="#">Mangas</a>
-                                <a class="big-a dropdown-item" href="#">Animes</a>
-                            </div>
-                        </li>
+                        </c:forEach>
 
                     </ul>
                     <button type="button" z-index="1" class="mr-1 btn btn-default navbar-btn">

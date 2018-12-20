@@ -1,13 +1,21 @@
 package com.japa.Japa.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Category {
 
     private String name;
-    private Collection<Category> underCategories;
+    private ArrayList<Category> subCategories;
 
-    public Category(){}
+    public Category(){
+        subCategories = new ArrayList<>();
+    }
+
+    public Category(String name){
+        setName(name);
+        subCategories = new ArrayList<>();
+    }
 
     public String getName() {
         return name;
@@ -17,11 +25,14 @@ public class Category {
         this.name = name;
     }
 
-    public Collection<Category> getUnderCategories() {
-        return underCategories;
+    public ArrayList<Category> getSubCategories() {
+        return subCategories;
     }
 
-    public void setUnderCategories(Collection<Category> underCategories) {
-        this.underCategories = underCategories;
+    public void setSubCategories(ArrayList<Category> subCategories) {
+        this.subCategories = subCategories;
     }
+
+    public void addSubCategory(Category category){this.subCategories.add(category);}
+
 }

@@ -2,6 +2,7 @@ package com.japa.Japa.dataAccess.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table (name = "Category")
@@ -11,8 +12,6 @@ public class CategoryEntity {
     private int category_id;
     @Column
     private String name;
-    @OneToMany(mappedBy = "category")
-    private ArrayList<CategoryEntity> underCategories;
 
     public CategoryEntity(){}
 
@@ -30,13 +29,5 @@ public class CategoryEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public ArrayList<CategoryEntity> getUnderCategories() {
-        return underCategories;
-    }
-
-    public void setUnderCategories(ArrayList<CategoryEntity> underCategories) {
-        this.underCategories = underCategories;
     }
 }

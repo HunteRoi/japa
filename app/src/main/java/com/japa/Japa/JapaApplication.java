@@ -1,5 +1,6 @@
 package com.japa.Japa;
 
+import com.japa.Japa.dataAccess.dao.CategoryDAO;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
