@@ -1,14 +1,18 @@
 package com.japa.Japa.dataAccess.entity;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Date;
+import java.util.Collection;
+import java.util.Date;
 
 @Entity
 @Table(name="User")
-public class UserEntity {
+public class UserEntity implements UserDetails{
     @Column
     @Id
     private int user_id;
@@ -23,7 +27,7 @@ public class UserEntity {
     @Column
     private String email;
     @Column
-    private boolean is_male;
+    private Boolean is_male;
     @Column
     private Date birthdate;
     @Column
@@ -54,8 +58,29 @@ public class UserEntity {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        return null;
     }
 
     public String getPassword() {
@@ -114,9 +139,7 @@ public class UserEntity {
         this.address = address;
     }
 
-    public String getAuthorities() {
-        return authorities;
-    }
+
 
     public void setAuthorities(String authorities) {
         this.authorities = authorities;
