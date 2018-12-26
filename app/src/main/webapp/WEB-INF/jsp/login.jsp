@@ -19,16 +19,15 @@
                    modelAttribute="current_user">
 
             <div class="form-label-group">
-
-                <form:input path="username" type="text" id="inputUsername" class="form-control" placeholder='<spring:message code="username"/>' required="" autofocus=""/>
-                <form:label type="text" for="inputUsername" path="username"><spring:message code="username"/></form:label>
+                <form:input path="username" type="text" id="username" class="form-control" placeholder='<spring:message code="username"/>' required="" autofocus=""/>
+                <form:label type="text" for="username" path="username"><spring:message code="username"/></form:label>
             </div>
 
             <div class="form-label-group">
-                <form:input path="password" type="password" id="inputPassword" class="form-control" placeholder='<spring:message code="password"/>' required="" autocomplete="false"/>
-                <form:label path="password" for="inputPassword"><spring:message code="password"/></form:label>
+                <form:input path="password" type="password" id="password" class="form-control" placeholder='<spring:message code="password"/>' required="" autocomplete="false"/>
+                <form:label path="password" for="password"><spring:message code="password"/></form:label>
             </div>
-            <form:button style="margin-left: auto; margin-right: auto" class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="signin"/></form:button>
+            <form:button style="margin-left: auto; margin-right: auto"  class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="signin"/></form:button>
             <p class="mt-5 mb-3 text-muted text-center">© 2017-2018</p>
         </form:form>
 

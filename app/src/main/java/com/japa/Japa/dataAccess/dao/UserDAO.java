@@ -20,12 +20,4 @@ public class UserDAO {
         this.userRepository = userRepository;
     }
 
-    public boolean getUserLogin(User searchUser) throws LoginDataException{
-        UserEntity filteredUser = userRepository.findByUsername(searchUser.getUsername());
-
-        if(filteredUser == null || !Encryption.match(searchUser.getPassword(), filteredUser.getPassword()))
-            throw new LoginDataException("Connection error");
-
-        return true;
-    }
 }

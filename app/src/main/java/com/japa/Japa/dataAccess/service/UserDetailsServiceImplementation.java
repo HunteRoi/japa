@@ -22,9 +22,9 @@ public class UserDetailsServiceImplementation implements UserDetailsService {
     public UserDetails loadUserByUsername(String searchedUser) throws UsernameNotFoundException {
         UserDetails user = userRepository.findByUsername(searchedUser);
         if(user == null){
-            throw new UsernameNotFoundException("");
+            throw new UsernameNotFoundException("User not found");
         }
-        return null;
+        return user;
     }
 }
 

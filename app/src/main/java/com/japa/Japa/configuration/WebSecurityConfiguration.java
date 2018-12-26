@@ -3,6 +3,7 @@ package com.japa.Japa.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,13 +12,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration  extends WebSecurityConfigurerAdapter{
 
     private static final String LOGIN_REQUEST = "/login";
-    private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{"/home","/css/*", "/images/*", "resources/*"};
+    private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{"/home","/css/*", "/images/*", "/translations/*", "/application.yml"};
     private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{"/admin"};
 
     private UserDetailsService userDetailsService;
@@ -55,6 +57,7 @@ public class WebSecurityConfiguration  extends WebSecurityConfigurerAdapter{
      * We provide the service which will return the user and the password encoder
      * The service which is created here need to implement an interface provided by spring security. See @UserDetailsServiceImpl
      */
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
