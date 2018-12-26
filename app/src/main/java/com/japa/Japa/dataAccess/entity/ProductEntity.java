@@ -1,6 +1,7 @@
 package com.japa.Japa.dataAccess.entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "Product")
@@ -10,9 +11,13 @@ public class ProductEntity {
     private int product_id;
     @Column
     private double product_price;
+    @Column
+    private String image_url;
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     @ManyToOne
     private CategoryEntity category;
+    @OneToMany(mappedBy = "product")
+    private Collection<ProductTranslationEntity> translationEntities;
 
     public ProductEntity(){}
 
@@ -38,5 +43,21 @@ public class ProductEntity {
 
     public void setCategory(CategoryEntity category) {
         this.category = category;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
+
+    public Collection<ProductTranslationEntity> getTranslationEntities() {
+        return translationEntities;
+    }
+
+    public void setTranslationEntities(Collection<ProductTranslationEntity> translationEntities) {
+        this.translationEntities = translationEntities;
     }
 }

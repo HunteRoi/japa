@@ -44,6 +44,7 @@ CREATE TABLE `Category` (
 CREATE TABLE `Product` (
 	`product_id` INT(5) UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `product_price` NUMERIC(8,3) NOT NULL,
+    `image_url` VARCHAR(500) NOT NULL,
     `category_id` INT(5) UNSIGNED NOT NULL REFERENCES `Category` (`category_id`)
 ) ENGINE = InnoDB, DEFAULT CHARSET = utf8;
 
@@ -109,28 +110,24 @@ CREATE TABLE `ProductTranslation` (
  */
 INSERT INTO `User` (`username`, `password`, `first_name`, `last_name`, `email`, `is_male`, `birthdate`, `address`, 
 `authorities`, `non_expired`, `non_locked`, `credentials_non_expired`, `enabled`) 
-	VALUES 
-		('mdpdubfr','$2a$10$nE/U91pBn6g34B.8beU9JeOBHQC0X7SUkm/mrIpaT1VCTcRWpodym','Françoise','Dubisy','francoise.dubisy@henallux.be',false,STR_TO_DATE('01/01/1990','%d/%m/%Y'),'Rue Joseph Calozet, 19 - 5000 Namur',
-		 'ROLE_USER', true, true, true, true
-        ),
-        ('imnoot','$2a$10$nLE6PRvIY1QYBUSCaf6/qOblYppw3au.9O8v5aDBba.2cUdkfAABa','Guillaume','Servais','guillaume.servais.01@student.henallux.be',true,STR_TO_DATE('17/09/1998','%d/%m/%Y'),'Rue de Matagne, 16A - 5351 OHEY',
-         'ROLE_ADMIN', true, true, true, true
-        ),
-        ('hunteroi','$2a$10$Xg6X9Npr6xpAUMly50KqsO3tPfdWHh2t8e4CU9y4aYUv65jHL2XCK','Tinaël','Devresse','tinael.devresse.01@student.henallux.be',true,STR_TO_DATE('21/09/1999','%d/%m/%Y'),'Avenue Schlögel, 75 - 5590 Ciney',
-		 'ROLE_ADMIN', true, true, true, true
-        ),
-        ('root','$2a$10$H4aD/r6TKjrpeKz4HN7xYeqC6Gt38.jEQtw4s.sS6VR3ZILbXYyce','Root','User','root@japa.com',null,STR_TO_DATE('01/01/2019','%d/%m/%Y'),'Some Address, CA 90810 - 3481 Some Place',
-		 'ROLE_ADMIN', true, true, true, true
-        )
-        ;
-        
+VALUES 
+('mdpdubfr','$2a$10$nE/U91pBn6g34B.8beU9JeOBHQC0X7SUkm/mrIpaT1VCTcRWpodym','Françoise','Dubisy','francoise.dubisy@henallux.be',false,STR_TO_DATE('01/01/1990','%d/%m/%Y'),'Rue Joseph Calozet, 19 - 5000 Namur',
+ 'ROLE_USER', true, true, true, true),
+('imnoot','$2a$10$nLE6PRvIY1QYBUSCaf6/qOblYppw3au.9O8v5aDBba.2cUdkfAABa','Guillaume','Servais','guillaume.servais.01@student.henallux.be',true,STR_TO_DATE('17/09/1998','%d/%m/%Y'),'Rue de Matagne, 16A - 5351 OHEY',
+ 'ROLE_ADMIN', true, true, true, true),
+('hunteroi','$2a$10$Xg6X9Npr6xpAUMly50KqsO3tPfdWHh2t8e4CU9y4aYUv65jHL2XCK','Tinaël','Devresse','tinael.devresse.01@student.henallux.be',true,STR_TO_DATE('21/09/1999','%d/%m/%Y'),'Avenue Schlögel, 75 - 5590 Ciney',
+ 'ROLE_ADMIN', true, true, true, true),
+('root','$2a$10$H4aD/r6TKjrpeKz4HN7xYeqC6Gt38.jEQtw4s.sS6VR3ZILbXYyce','Root','User','root@japa.com',null,STR_TO_DATE('01/01/2019','%d/%m/%Y'),'Some Address, CA 90810 - 3481 Some Place',
+ 'ROLE_ADMIN', true, true, true, true)
+;
+	
 INSERT INTO `Category` (`name`, `has_no_children`) VALUES 
 ('Mangas',false),
 ('Animes',false),
 ('Goodies',true),
-('Shōnen',null),
-('Shōjo',null),
-('Shōnen',null),
+('Shonen',null),
+('Shojo',null),
+('Shonen',null),
 ('Seinen',null);
 
 INSERT INTO `Hierarchy`(`main_category_id`,`sub_category_id`) VALUES
@@ -141,15 +138,17 @@ INSERT INTO `Hierarchy`(`main_category_id`,`sub_category_id`) VALUES
 
 INSERT INTO `Language` (`name`) VALUES ('Français'), ('English');
    
-INSERT INTO `Product` (`product_price`, `category_id`) VALUES 
-(7.5,4),
-(8,4),
-(7,5),
-(8.5,5),
-(35,6),
-(80,6),
-(25,7),
-(17,7);
+INSERT INTO `Product` (`product_price`, `category_id`, `image_url`) VALUES 
+(7.5,4, 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/SNote.jpg/220px-SNote.jpg'),
+(8,4, 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d6/Shingeki_no_Kyojin_manga_volume_1.jpg/220px-Shingeki_no_Kyojin_manga_volume_1.jpg'),
+(7,5, 'https://f01.mrcdn.info/file/mrportal/h/9/5/c/l8.dg-7m-En.png'),
+(8.5,5,'https://www.nautiljon.com/images/manga/00/67/blue_spring_ride_1276.jpg'),
+(34.95,6, 'http://product.kaze.fr/product/saison_1_my_hero_academia_dvd/3d/web/MHA_integrale_DVD_3D_0x233.png'),
+(79.95,6, 'https://images-na.ssl-images-amazon.com/images/I/81XT0dGYlxL._SY550_.jpg'),
+(24.15,7,'https://images-na.ssl-images-amazon.com/images/I/81h%2ByjJoOXL._SY550_.jpg'),
+(16.95,7,'https://images-na.ssl-images-amazon.com/images/I/91pnuGTQd%2BL._SY550_.jpg'),
+(14.99,3,'https://cdn.shopify.com/s/files/1/0552/1401/products/12997_Naruto_NarutoRasengan_POP_GLAM_HiRes.jpg?v=1481823527'),
+(127.57,3,'https://www.nautiljon.com/images/goodies/00/31/mini/overlord_-_albedo_good_smile_company_4913.jpg?11533681197');
 
 INSERT INTO `ProductTranslation` (`product_id`,`language_id`,`name`,`description`) VALUES
 -- Insertion des mangas 
@@ -169,17 +168,19 @@ INSERT INTO `ProductTranslation` (`product_id`,`language_id`,`name`,`description
 (7,1,'Tokyo Ghoul (Saison 1)','Dans la ville de Tokyo, des créatures nommées goules sont apparues et se nourrissent de chair humaine pour survivre. Un jour, Ken Kaneki, jeune étudiant, se fait attaquer par l\'une d\'entre elles et subit une grave blessure. Pour rester en vie, il reçoit une greffe de la goule qui l\'a attaqué et devient un hybride, mi-humain mi-goule (borgne artificielle). Rapidement, il se rend compte qu\'il ne peut plus manger les mêmes aliments qu\'auparavant. Il entre alors au service du café « L’Antique », un repaire de goules, où il apprend à se nourrir sans faire de mal aux humains. Mais il va bien vite se retrouver au cœur d\'une guerre sanglante entre le CCG (Centre de Contrôle des Goules), déterminé à retrouver et exterminer celles-ci jusqu\'à la dernière et l\'Arbre Aogiri, une organisation de goules sans merci. Il découvre que les goules ne sont pas si différentes des humains, et peu à peu il va commencer à s\'adapter.'),
 (7,2,'Tokyo Ghoul (Season 1)','In the city of Tokyo, creatures named ghoules appeared and feed on human flesh to survive. One day, Ken Kaneki, a young student, was attacked by one of them and suffered a serious injury. To stay alive, he receives a transplant from the ghoul that attacked him and becomes a hybrid, half-human mid-ghoul (artificial ghoul). Quickly, he realizes that he can no longer eat the same foods as before. He then went to serve the coffee «L\'Antique», a den of ghouls, where he learned to feed himself without hurting humans. But it will soon find itself at the heart of a bloody war between the CCG (Centre de Contrôle des goules), determined to find and exterminate these until the last and the Arbre Aogiri, a merciless ghoul organization. He discovers that ghouls are not so different from humans, and little by little he will begin to adapt.'),
 (8,1,'Parasite : La Maxime','Une nuit, des sphères de la taille de balles de tennis, contenant des créatures à l\'apparence de serpents, tombent en nombre inconnu partout dans le monde. Ils sont programmés pour prendre la place des cerveaux humains. Un de ceux-ci s\'attaque à un jeune homme, Shinichi, durant son sommeil, en essayant de s\'introduire par son oreille mais ne peut l\'atteindre, ce dernier ayant gardé ses écouteurs pour la nuit. Réveillé en sursaut alors que le parasite tente de s\'introduire par son nez, il essaye de se défendre mais finit par se faire perforer la main droite. Le lycéen prend alors ses écouteurs et les enroule autour de son bras, empêchant le parasite de grimper jusqu\'au cerveau. Ne pouvant quitter son bras, ce dernier fusionne finalement avec sa main droite. Pendant ce temps, d\'autres parasites, ayant réussi à prendre possession du cerveau de leur hôte, commencent à se nourrir d\'êtres humains, tandis que la créature et Shinichi sont forcés de cohabiter.'),
-(8,2,'Parasyte : The Maxim','One night, spheres the size of tennis balls, containing creatures with the appearance of snakes, fall into unknown numbers all over the world. They’re programmed to take the place of human brains. One of them attacks a young man, Shinichi, during his sleep, trying to break into his ear but cannot reach him, because he kept his headphones for the night. Awakened astonishingly as the parasite tries to break through his nose, he tries to defend himself but ends up getting punctured with his right hand. The high school student then takes his headphones and wraps them around his arm, preventing the parasite from climbing to the brain. Unable to leave his arm, the latter eventually merges with his right hand. Meanwhile, other parasites, having managed to take possession of their host’s brain, begin to feed on human beings, while the creature and Shinichi are forced to cohabit.');
+(8,2,'Parasyte : The Maxim','One night, spheres the size of tennis balls, containing creatures with the appearance of snakes, fall into unknown numbers all over the world. They’re programmed to take the place of human brains. One of them attacks a young man, Shinichi, during his sleep, trying to break into his ear but cannot reach him, because he kept his headphones for the night. Awakened astonishingly as the parasite tries to break through his nose, he tries to defend himself but ends up getting punctured with his right hand. The high school student then takes his headphones and wraps them around his arm, preventing the parasite from climbing to the brain. Unable to leave his arm, the latter eventually merges with his right hand. Meanwhile, other parasites, having managed to take possession of their host’s brain, begin to feed on human beings, while the creature and Shinichi are forced to cohabit.'),
 -- Insertion des goodies
+(9,1,'Naruto Shippuden FUNKO POP!',''),
+(9,2,'Naruto Shippuden FUNKO POP!',''),
+(10,1,'Figurine Overlord - Albedo', 'Figurine à l\'échelle 1/8e représentant Albedo avec les ailes légèrement déployées derrière elle.'),
+(10,2,'Overlord - Albedo figurine', 'Figurine scale 1 / 8th representing Albedo with wings slightly spread behind her.');
+
 
 
 /*
 INSERT INTO `Order` (`date`, `user_id`) VALUES ();
 
-
 INSERT INTO `ProductLine` (`quantity`, `orderProductPrice`, `lineNumber`, `order_id`, `product_id`) VALUES ();
-
-INSERT INTO `Hierarchy` (`mainCategory_id`, `subCategory_id`) VALUES ();
 
 INSERT INTO `Promotion` (`label`, `pourcent`, `startDate`, `endDate`) VALUES ();
 

@@ -3,7 +3,7 @@ package com.japa.Japa.dataAccess.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ProductTranslation")
+@Table(name = "Product_translation")
 public class ProductTranslationEntity {
     @Id
     @Column
