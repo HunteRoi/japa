@@ -3,7 +3,7 @@
 <html>
     <body>
         <div class="full-center">
-            <div class="text-center">
+            <div class="text-center mb-4">
                 <a href='<spring:url value="/home"/>'>
                     <img class="mb-2" src='<spring:url value="/images/japa2.png"/>' alt="Japa logo" width="164" height="164">
                 </a>
@@ -12,15 +12,13 @@
                 <a href='<spring:url value="/signup"/>'><spring:message code="signup"/></a>
             </div>
 
-            <form:form class="form-signin"
-                       method="POST"
-                       modelAttribute="current_user">
+            <form:form class="form-signin" method="POST" modelAttribute="current_user">
                 <div class="form-label-group">
                     <form:input path="username" type="text" id="username" class="form-control" placeholder='<spring:message code="username"/>' required="" autofocus=""/>
                     <form:label type="text" for="username" path="username"><spring:message code="username"/></form:label>
                 </div>
 
-                <div class="form-label-group mb-3">
+                <div class="form-label-group mb-4">
                     <form:input path="password" type="password" id="password" class="form-control" placeholder='<spring:message code="password"/>' required="" autocomplete="false"/>
                     <form:label path="password" for="password"><spring:message code="password"/></form:label>
                 </div>

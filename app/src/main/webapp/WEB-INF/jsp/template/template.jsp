@@ -20,9 +20,9 @@
         <!-- Custom CSS -->
         <link type="text/css" href='<spring:url value="/css/main-style.css"/>' rel="stylesheet">
     </head>
-    <body>
+    <body class="d-flex flex-column h-100">
         <header>
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
                 <a class="navbar-brand" href='<spring:url value="/home"/>'>
                     <img src='<spring:url value="/images/japa-logo.png"/>' height="75">
                 </a>
@@ -35,20 +35,16 @@
                             <c:choose>
                                 <c:when test="${!category.getHasNoChildren()}">
                                     <li class="nav-item dropdown">
-                                        <a class="big-a nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                ${category.getName()}
-                                        </a>
+                                        <a class="big-a nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${category.getName()}</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <c:forEach var="subCategory" items="${category.getSubCategories()}">
-                                                <a class="big-a dropdown-item" href="#">${subCategory.getName()}</a>
+                                                <a class="big-a dropdown-item" href='<spring:url value="/${category.getNormalizedName()}/${subCategory.getNormalizedName()}"/>'>${subCategory.getName()}</a>
                                             </c:forEach>
                                         </div>
                                     </li>
                                 </c:when>
                                 <c:otherwise>
-                                    <a class="big-a nav-link" href="#" role="button" aria-expanded="false" aria-haspopup="false">
-                                            ${category.getName()}
-                                    </a>
+                                    <a class="big-a nav-link" href='<spring:url value="/${category.getNormalizedName()}"/>' role="button" aria-expanded="false" aria-haspopup="false">${category.getName()}</a>
                                 </c:otherwise>
                             </c:choose>
                         </c:forEach>
@@ -95,7 +91,7 @@
 
         <!-- Bootstrap Core -->
         <script src='<spring:url value="/js/popper.min.js"/>'></script>
-        <script src='<spring:url value="/js/jquery.min.js"/>'></script>
-        <script src='<spring:url value="/js/bootstrap.bundle.min.js"/>'></script>
+        <script src='<spring:url value="https://code.jquery.com/jquery-3.3.1.slim.min.js"/>'></script>
+        <script src='<spring:url value="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js"/>'></script>
     </body>
 </html>

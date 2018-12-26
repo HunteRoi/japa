@@ -1,10 +1,5 @@
-header, aside, article, main, footer {
-    display: block;
-}
-
 html, body {
     height: 100%;
-    margin: 0;
 }
 
 .full-center {
@@ -128,9 +123,6 @@ html, body {
 }
 
 .footer {
-    height: 100px;
-    margin-top: -100px;
-
     width: 100%;
     font-size:85%;
     text-align:center;
