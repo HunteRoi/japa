@@ -17,17 +17,9 @@ public class LoginController extends MainController {
     public LoginController (CategoryDAO categoryDAO) { super(categoryDAO); }
 
     @RequestMapping(method = RequestMethod.GET)
-<<<<<<< Updated upstream
     public String home (Model model, @ModelAttribute UserEntity user){
         model.addAttribute("categories", this.categoryDAO.getCategories());
         model.addAttribute("current_user", user);
         return "integrated:login";
     }
-=======
-    public String home (Model model, @ModelAttribute UserEntity user) {
-        model.addAttribute("current_user", new UserEntity());
-        return "integrated:login";
-    }
-
->>>>>>> Stashed changes
 }
