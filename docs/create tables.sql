@@ -48,7 +48,7 @@ CREATE TABLE `Product` (
     `category_id` INT(5) UNSIGNED NOT NULL REFERENCES `Category` (`category_id`)
 ) ENGINE = InnoDB, DEFAULT CHARSET = utf8;
 
-CREATE TABLE `ProductLine` (
+CREATE TABLE `Product_line` (
 	`product_line_id` INT(5) UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `quantity` INT(3) UNSIGNED NOT NULL,
     `order_product_price` NUMERIC(8,3) NOT NULL,
@@ -86,14 +86,14 @@ CREATE TABLE `Language` (
     `name` VARCHAR(50) NOT NULL
 ) ENGINE = InnoDB, DEFAULT CHARSET = utf8;
 
-CREATE TABLE `ProductTranslation` (
+CREATE TABLE `Product_translation` (
 	`product_id` INT(5) UNSIGNED NOT NULL REFERENCES `Product` (`product_id`),
     `language_id` INT(5) UNSIGNED NOT NULL REFERENCES `Language` (`language_id`),
     `name` VARCHAR(50) NOT NULL,
     `description` VARCHAR(1000) NOT NULL,
     /*CONSTRAINT PRIMARY KEY (`product_id`, `language_id`)*/
     `product_translation_id` INT(5) UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    CONSTRAINT `product_t	ranslation_uk` UNIQUE (`product_id`, `language_id`)
+    CONSTRAINT `product_translation_uk` UNIQUE (`product_id`, `language_id`)
 ) ENGINE = InnoDB, DEFAULT CHARSET = utf8;
 
 /*INSERT INTO TABLES
@@ -150,7 +150,7 @@ INSERT INTO `Product` (`product_price`, `category_id`, `image_url`) VALUES
 (14.99,3,'https://cdn.shopify.com/s/files/1/0552/1401/products/12997_Naruto_NarutoRasengan_POP_GLAM_HiRes.jpg?v=1481823527'),
 (127.57,3,'https://www.nautiljon.com/images/goodies/00/31/mini/overlord_-_albedo_good_smile_company_4913.jpg?11533681197');
 
-INSERT INTO `ProductTranslation` (`product_id`,`language_id`,`name`,`description`) VALUES
+INSERT INTO `Product_translation` (`product_id`,`language_id`,`name`,`description`) VALUES
 -- Insertion des mangas 
 (1, 1, 'Death note', 'Light Yagami, jeune étudiant japonais de 17 ans surdoué qui juge le monde tel qu\'il est, criminel, corrompu et noyé dans l\'injustice, trouve un beau jours, par hasard un cahier noir intituler "Death Note" (Cahier de la mort), des instruction y sont écrite, le cahier stipule "la personne dont le nom est inscrit dans ce carnet meurt".'),
 (1,2,'Death Note', 'Light Yagami, a young, gifted 17-year-old Japanese student who judges the world as he is, criminal, corrupted and drowned in injustice, finds a beautiful day, by chance, a black notebook titled "Death Note" (Death Book) ), instructions are written there, the notebook stipulates "the person whose name is written in this notebook dies"'),

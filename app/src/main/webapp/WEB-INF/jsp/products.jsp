@@ -5,7 +5,21 @@
     <div class="container">
         <div class="row">
             <!-- ICI C LE PRODUIT -->
-            <div class="col-lg-4 col-md-6 mb-4 ml-auto mr-auto">
+            <c:forEach var="product" items="${products}">
+                <div class="col-lg-4 col-md-6 mb-4 ml-auto mr-auto">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top" src="${product.getImageUrl()}" alt=""></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#">${product.getName()}</a>
+                            </h4>
+                            <h5>${product.getProductPrice()}€</h5>
+                            <p class="card-text">${product.getDescription()}</p>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+            <!--div class="col-lg-4 col-md-6 mb-4 ml-auto mr-auto">
                 <div class="card h-100">
                     <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                     <div class="card-body">
@@ -17,7 +31,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
     </body>
 </html>

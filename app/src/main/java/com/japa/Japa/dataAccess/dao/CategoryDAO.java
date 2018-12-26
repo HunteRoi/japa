@@ -30,12 +30,14 @@ public class CategoryDAO {
         List<HierarchyEntity> hierarchies = hierarchyRepository.findAll();
         List<CategoryEntity> categoriesEntities = categoryRepository.findAll();
         List<Category> categories = new ArrayList<>();
+
         for(CategoryEntity categoryEntity : categoriesEntities){
             categories.add(providerConverter.categoryEntityToCategoryModel(categoryEntity));
         }
         for(HierarchyEntity hierarchyEntity : hierarchies){
             getRightCategory(categories, hierarchyEntity.getMain_category().getName()).addSubCategory(getRightCategory(categories, hierarchyEntity.getSub_category().getName()));
         }
+        //categories =
         categories = categories.stream().filter(category -> category.getHasNoChildren() != null).collect(Collectors.toList());
         return categories;
     }
