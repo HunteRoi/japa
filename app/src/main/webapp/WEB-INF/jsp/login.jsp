@@ -12,15 +12,17 @@
                 <a href='<spring:url value="/signup"/>'><spring:message code="signup"/></a>
             </div>
 
-            <form:form class="form-signin" method="POST" modelAttribute="current_user">
+            <form:form class="signinForm" method="POST" modelAttribute="current_user">
                 <div class="form-label-group">
                     <form:input path="username" type="text" id="username" class="form-control" placeholder='<spring:message code="username"/>' required="" autofocus=""/>
                     <form:label type="text" for="username" path="username"><spring:message code="username"/></form:label>
+                    <form:errors path="username"/>
                 </div>
 
                 <div class="form-label-group mb-4">
                     <form:input path="password" type="password" id="password" class="form-control" placeholder='<spring:message code="password"/>' required="" autocomplete="false"/>
                     <form:label path="password" for="password"><spring:message code="password"/></form:label>
+                    <form:errors path="password"/>
                 </div>
 
                 <form:button class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="signin"/></form:button>
