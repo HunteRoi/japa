@@ -12,6 +12,8 @@ public class CategoryEntity {
     private int category_id;
     @Column
     private String name;
+    @Column
+    private Boolean has_no_children;
 
     public CategoryEntity(){}
 
@@ -29,5 +31,13 @@ public class CategoryEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean getHas_no_children() {
+        return has_no_children;
+    }
+
+    public void setHas_no_children(Boolean has_no_children) {
+        this.has_no_children = has_no_children;
     }
 }

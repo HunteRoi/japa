@@ -36,7 +36,7 @@ public class CategoryDAO {
         for(HierarchyEntity hierarchyEntity : hierarchies){
             getRightCategory(categories, hierarchyEntity.getMain_category().getName()).addSubCategory(getRightCategory(categories, hierarchyEntity.getSub_category().getName()));
         }
-        categories = categories.stream().filter(category -> category.getSubCategories().size() > 0).collect(Collectors.toList());
+        categories = categories.stream().filter(category -> category.getHasNoChildren() != null).collect(Collectors.toList());
         return categories;
     }
 

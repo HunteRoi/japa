@@ -10,6 +10,7 @@ public class ProviderConverter {
     public Category categoryEntityToCategoryModel(CategoryEntity categoryEntity){
         Category category = new Category();
         category.setName(categoryEntity.getName());
+        category.setHasNoChildren(categoryEntity.getHas_no_children());
         return category;
     }
 

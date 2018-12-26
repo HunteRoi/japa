@@ -6,6 +6,7 @@ import java.util.Collection;
 public class Category {
 
     private String name;
+    private Boolean hasNoChildren;
     private ArrayList<Category> subCategories;
 
     public Category(){
@@ -36,5 +37,13 @@ public class Category {
     }
 
     public void addSubCategory(Category category){this.subCategories.add(category);}
+
+    public Boolean getHasNoChildren() {
+        return hasNoChildren;
+    }
+
+    public void setHasNoChildren(Boolean hasNoChildren) {
+        this.hasNoChildren = hasNoChildren;
+    }
 
 }

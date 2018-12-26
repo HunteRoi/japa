@@ -32,16 +32,25 @@
                             <a class="big-a nav-link active" href='<spring:url value="/home"/>'><spring:message code="home"/> <span class="sr-only">(current)</span></a>
                         </li>
                         <c:forEach var="category" items="${categories}">
-                        <li class="nav-item dropdown">
-                            <a class="big-a nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    ${category.getName()}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <c:forEach var="subCategory" items="${category.getSubCategories()}">
-			                        <a class="big-a dropdown-item" href='<spring:url value="/${category.getNormalizedName()}/${subCategory.getNormalizedName()}"/>'>${subCategory.getName()}</a>
-                                </c:forEach>
-                            </div>
-                        </li>
+                            <c:choose>
+                                <c:when test="${!category.getHasNoChildren()}">
+                                    <li class="nav-item dropdown">
+                                        <a class="big-a nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                ${category.getName()}
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <c:forEach var="subCategory" items="${category.getSubCategories()}">
+                                                <a class="big-a dropdown-item" href="#">${subCategory.getName()}</a>
+                                            </c:forEach>
+                                        </div>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="big-a nav-link" href="#" role="button" aria-expanded="false" aria-haspopup="false">
+                                            ${category.getName()}
+                                    </a>
+                                </c:otherwise>
+                            </c:choose>
                         </c:forEach>
                     </ul>
                     <button type="button" onclick="location.href='<spring:url value="/checkout"/>'" z-index="1" class="mr-1 btn btn-default navbar-btn">
