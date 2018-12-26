@@ -6,6 +6,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href='<spring:url value="/images/japa2.ico"/>'>
+        <link rel="shortcut icon" href='<spring:url value="/images/japa2.ico"/>'>
         <title>${title}</title>
 
         <!-- Bootstrap Core -->
@@ -21,29 +23,28 @@
     <body>
         <header>
             <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-                <a class="navbar-brand" href="">
+                <a class="navbar-brand" href='<spring:url value="/home"/>'>
                     <img src='<spring:url value="/images/japa-logo.png"/>' height="75">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a class="big-a nav-link active" href="#"><spring:message code="home"/> <span class="sr-only">(current)</span></a>
+                            <a class="big-a nav-link active" href='<spring:url value="/home"/>'><spring:message code="home"/> <span class="sr-only">(current)</span></a>
                         </li>
                         <c:forEach var="category" items="${categories}">
                         <li class="nav-item dropdown">
-                            <a class="big-a nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="big-a nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     ${category.getName()}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <c:forEach var="subCategory" items="${category.getSubCategories()}">
-			                        <a class="big-a dropdown-item" href="#">${subCategory.getName()}</a>
+			                        <a class="big-a dropdown-item" href='<spring:url value="/${category.getNormalizedName()}/${subCategory.getNormalizedName()}"/>'>${subCategory.getName()}</a>
                                 </c:forEach>
                             </div>
                         </li>
                         </c:forEach>
-
                     </ul>
-                    <button type="button" z-index="1" class="mr-1 btn btn-default navbar-btn">
+                    <button type="button" onclick="location.href='<spring:url value="/checkout"/>'" z-index="1" class="mr-1 btn btn-default navbar-btn">
                         <i class="fas fa-shopping-cart"></i>
                     </button>
                     <div class="dropdown">
@@ -62,21 +63,21 @@
                             <a class="dropdown-item" href="${localeFr}"><spring:message code="french"/></a>
                         </div>
                     </div>
-                    <button type="button" class="ml-1 btn btn-default navbar-btn"><spring:message code="signin"/></button>
+                    <button type="button" onclick="location.href='<spring:url value="/login"/>'" class="ml-1 btn btn-default navbar-btn"><spring:message code="signin"/></button>
                 </div>
             </nav>
         </header>
 
-        <main role="main">
+        <main role="main" class="flex-shrink-0">
             <tiles:insertAttribute name="main-content" />
         </main>
 
-        <footer class="footer text-muted">
+        <footer class="footer text-muted mt-auto">
             <div class="container-fluid pt-3 pb-2">
                 <ul class="footer-links">
                     <li><a href="https://facebook.com/" target="_blank">Facebook</a></li>
                     <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
-                    <li><a href='<spring:url value="/legal-terms"/>'><spring:message code="legalterms"/></a></li>
+                    <li><a href='<spring:url value="/terms"/>'><spring:message code="legalterms"/></a></li>
                 </ul>
                 <p><spring:message code="footertext"/></p>
                 <p><i class="far fa-copyright"></i> <spring:message code="copyright"/></p>

@@ -2,7 +2,6 @@
 <%@ include file="./include/importTags.jsp" %>
 <!DOCTYPE HTML>
 <html>
-    <head></head>
     <body>
         <header class="business-header">
             <div class="container">

@@ -2,13 +2,16 @@ header, aside, article, main, footer {
     display: block;
 }
 
-html,
-body {
+html, body {
     height: 100%;
+    margin: 0;
 }
 
-button {
-    margin: 0rem 2rem !important;
+.full-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .big-a {
@@ -47,7 +50,7 @@ button {
 
 .form-label-group {
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 0.7rem;
 }
 
 .form-label-group > input,
@@ -62,7 +65,7 @@ button {
     display: block;
     width: 100%;
     margin-bottom: 0; /* Override default `<label>` margin */
-    line-height: 1.5;
+    line-height: 0.8;
     color: #495057;
     cursor: text; /* Match the input under the label */
     border: 1px solid transparent;
@@ -125,8 +128,9 @@ button {
 }
 
 .footer {
-    bottom: 0;
-    position: relative;
+    height: 100px;
+    margin-top: -100px;
+
     width: 100%;
     font-size:85%;
     text-align:center;

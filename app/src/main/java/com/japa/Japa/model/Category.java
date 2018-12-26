@@ -21,6 +21,8 @@ public class Category {
         return name;
     }
 
+    public String getNormalizedName() { return name.toLowerCase(); }
+
     public void setName(String name) {
         this.name = name;
     }

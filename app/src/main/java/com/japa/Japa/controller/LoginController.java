@@ -1,30 +1,25 @@
 package com.japa.Japa.controller;
 
+import com.japa.Japa.dataAccess.dao.CategoryDAO;
 import com.japa.Japa.dataAccess.entity.UserEntity;
-import com.japa.Japa.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
-
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/login")
-@SessionAttributes("current_user")
-public class LoginController {
+public class LoginController extends MainController {
+
+    @Autowired
+    public LoginController (CategoryDAO categoryDAO) { super(categoryDAO); }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String home (Model model/*, @ModelAttribute UserDetails user*/) {
-        model.addAttribute("current_user", new UserEntity());
+    public String home (Model model, @ModelAttribute UserEntity user){
+        model.addAttribute("categories", this.categoryDAO.getCategories());
+        model.addAttribute("current_user", user);
         return "integrated:login";
     }
-
-    @ModelAttribute("current_user")
-    public User login(){
-        return new User();
-    }
-
 }
