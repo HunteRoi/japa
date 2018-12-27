@@ -29,6 +29,7 @@ public class ProviderConverter {
 
         product.setProductPrice(productEntity.getProduct_price());
         product.setImageUrl(productEntity.getImage_url());
+        product.setId(productEntity.getProduct_id());
         product.setName(translation.getName());
         product.setDescription(translation.getDescription());
         return  product;

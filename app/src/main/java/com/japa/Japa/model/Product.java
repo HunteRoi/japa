@@ -5,6 +5,7 @@ public class Product {
     private String imageUrl;
     private String name;
     private String description;
+    private int id;
     //private Category category;
 
     public Product(){}
@@ -47,5 +48,13 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

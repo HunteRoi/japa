@@ -38,13 +38,13 @@
                                         <a class="big-a nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${category.getName()}</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <c:forEach var="subCategory" items="${category.getSubCategories()}">
-                                                <a class="big-a dropdown-item" href='<spring:url value="/${category.getNormalizedName()}/${subCategory.getNormalizedName()}"/>'>${subCategory.getName()}</a>
+                                                <a class="big-a dropdown-item" href='<spring:url value="/category/${category.getNormalizedName()}/${subCategory.getNormalizedName()}"/>'>${subCategory.getName()}</a>
                                             </c:forEach>
                                         </div>
                                     </li>
                                 </c:when>
                                 <c:otherwise>
-                                    <a class="big-a nav-link" href='<spring:url value="/${category.getNormalizedName()}"/>' role="button" aria-expanded="false" aria-haspopup="false">${category.getName()}</a>
+                                    <a class="big-a nav-link" href='<spring:url value="/category/${category.getNormalizedName()}"/>' role="button" aria-expanded="false" aria-haspopup="false">${category.getName()}</a>
                                 </c:otherwise>
                             </c:choose>
                         </c:forEach>
@@ -68,7 +68,12 @@
                             <a class="dropdown-item" href="${localeFr}"><spring:message code="french"/></a>
                         </div>
                     </div>
-                    <button type="button" onclick="location.href='<spring:url value="/login"/>'" class="ml-1 btn btn-default navbar-btn"><spring:message code="signin"/></button>
+                    <sec:authorize access="!isAuthenticated()">
+                        <button type="button" onclick="location.href='<spring:url value="/login"/>'" class="ml-1 btn btn-default navbar-btn"><spring:message code="signin"/></button>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <button type="button" onclick="location.href='<spring:url value="/logout"/>'" class="ml-1 btn btn-default navbar-btn"><spring:message code="signout"/></button>
+                    </sec:authorize>
                 </div>
             </nav>
         </header>

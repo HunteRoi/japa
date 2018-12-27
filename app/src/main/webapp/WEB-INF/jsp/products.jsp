@@ -2,36 +2,23 @@
 <%@ include file="include/importTags.jsp" %>
 <html>
     <body>
-    <div class="container">
-        <div class="row">
-            <!-- ICI C LE PRODUIT -->
-            <c:forEach var="product" items="${products}">
-                <div class="col-lg-4 col-md-6 mb-4 ml-auto mr-auto">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="${product.getImageUrl()}" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">${product.getName()}</a>
-                            </h4>
-                            <h5>${product.getProductPrice()}€</h5>
-                            <p class="card-text">${product.getDescription()}</p>
+        <div class="container">
+            <div class="row">
+                <c:forEach var="product" items="${products}">
+                    <div class="col-lg-4 col-md-6 mb-4 ml-auto mr-auto">
+                        <div class="card h-100">
+                            <a href='<spring:url value="/product/${product.getId()}"/>'><img class="card-img-top" src="${product.getImageUrl()}" alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href='<spring:url value="/product/${product.getId()}"/>'>${product.getName()}</a>
+                                </h4>
+                                <h5>${product.getProductPrice()}€</h5>
+                                <p class="card-text">${product.getDescription()}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </c:forEach>
-            <!--div class="col-lg-4 col-md-6 mb-4 ml-auto mr-auto">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Item One</a>
-                        </h4>
-                        <h5>$24.99</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
-        </div>-->
-    </div>
+        </div>
     </body>
 </html>

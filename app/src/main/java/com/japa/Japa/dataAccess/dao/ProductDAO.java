@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Transactional
 @Service
+
 public class ProductDAO {
     private ProductRepository productRepository;
     private CategoryRepository categoryRepository;
@@ -30,7 +31,13 @@ public class ProductDAO {
         this.providerConverter = providerConverter;
     }
 
-    public List<Product> getAllProducts(String mainCategory,String language){
+    public Product getProductById(int id, String language){
+        List<ProductEntity> productEntities = productRepository.findAll();
+        ProductEntity product = productEntities.stream().filter(productEntity -> productEntity.getProduct_id() == id).findFirst().orElse(null);
+        return providerConverter.productEntityToProductModel(product, language);
+    }
+
+    public List<Product> getAllProductsOfMainCategory(String mainCategory, String language){
         List<Product> products = new ArrayList<>();
         List<ProductEntity> filteredProductEntities = new ArrayList<>();
         List<ProductEntity> productEntities = productRepository.findAll();
@@ -50,7 +57,7 @@ public class ProductDAO {
         }
 
         for (ProductEntity productEntity : filteredProductEntities) {
-            products.add(providerConverter.productEntityToProductModel(productEntity, language));
+            products.add(providerConverter.productEntityToProductModel(productEntity,language));
         }
 
         return products;

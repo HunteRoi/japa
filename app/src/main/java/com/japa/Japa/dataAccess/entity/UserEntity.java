@@ -1,25 +1,40 @@
 package com.japa.Japa.dataAccess.entity;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Entity
 @Table(name="User")
 public class UserEntity implements UserDetails{
-    @Column
     @Id
+    @Column
     private int user_id;
-    @Column
+    @Column (name = "USERNAME")
     private String username;
-    @Column
+    @Column (name = "PASSWORD")
     private String password;
+    @Column (name = "AUTHORITIES")
+    private String authorities;
+    @Column (name = "NON_EXPIRED")
+    private boolean non_expired;
+    @Column (name = "NON_LOCKED")
+    private boolean non_locked;
+    @Column (name = "CREDENTIALS_NON_EXPIRED")
+    private boolean credentials_non_expired;
+    @Column (name = "ENABLED")
+    private boolean enabled;
     @Column
     private String first_name;
     @Column
@@ -32,16 +47,6 @@ public class UserEntity implements UserDetails{
     private Date birthdate;
     @Column
     private String address;
-    @Column
-    private String authorities;
-    @Column
-    private boolean non_expired;
-    @Column
-    private boolean non_locked;
-    @Column
-    private boolean credentials_non_expired;
-    @Column
-    private boolean enabled;
 
     public UserEntity() {
     }
@@ -54,23 +59,31 @@ public class UserEntity implements UserDetails{
         this.user_id = user_id;
     }
 
+    public Boolean getIs_male() {
+        return is_male;
+    }
+
+    public void setIs_male(Boolean is_male) {
+        this.is_male = is_male;
+    }
+
     public String getUsername() {
         return username;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return non_expired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return non_locked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return credentials_non_expired;
     }
 
     public void setUsername(String username) {
@@ -79,8 +92,18 @@ public class UserEntity implements UserDetails{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 
-        return null;
+        if(!isEmpty(authorities)) {
+            String[] authoritiesAsArray = authorities.split(",");
+
+            for(String authority : authoritiesAsArray) {
+                if(!isEmpty(authority)) {
+                    grantedAuthorities.add(new SimpleGrantedAuthority(authority));
+                }
+            }
+        }
+        return grantedAuthorities;
     }
 
     public String getPassword() {
