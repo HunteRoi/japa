@@ -21,11 +21,11 @@ CREATE TABLE `User` (
     `is_male` TINYINT(1) DEFAULT NULL,
     `birthdate` DATE NOT NULL,
 	`address` VARCHAR(100) NOT NULL,
-    `authorities` VARCHAR(500) DEFAULT NULL,
-    `non_expired` TINYINT(1) DEFAULT NULL,
-    `non_locked` TINYINT(1) DEFAULT NULL,
-    `credentials_non_expired` TINYINT(1) DEFAULT NULL,
-    `enabled` TINYINT(1) DEFAULT NULL
+    `AUTHORITIES` VARCHAR(500) DEFAULT NULL,
+    `NON_EXPIRED` TINYINT(1) DEFAULT NULL,
+    `NON_LOCKED` TINYINT(1) DEFAULT NULL,
+    `CREDENTIALS_NON_EXPIRED` TINYINT(1) DEFAULT NULL,
+    `ENABLED` TINYINT(1) DEFAULT NULL
 ) ENGINE = InnoDB, DEFAULT CHARSET = utf8;
 
 CREATE TABLE `Order` (
@@ -108,8 +108,8 @@ CREATE TABLE `Product_translation` (
 	mdp : root
     -> $2a$10$H4aD/r6TKjrpeKz4HN7xYeqC6Gt38.jEQtw4s.sS6VR3ZILbXYyce
  */
-INSERT INTO `User` (`username`, `password`, `first_name`, `last_name`, `email`, `is_male`, `birthdate`, `address`, 
-`authorities`, `non_expired`, `non_locked`, `credentials_non_expired`, `enabled`) 
+INSERT INTO `User` (`USERNAME`, `PASSWORD`, `first_name`, `last_name`, `email`, `is_male`, `birthdate`, `address`, 
+`AUTHORITIES`, `NON_EXPIRED`, `NON_LOCKED`, `CREDENTIALS_NON_EXPIRED`, `ENABLED`) 
 VALUES 
 ('mdpdubfr','$2a$10$nE/U91pBn6g34B.8beU9JeOBHQC0X7SUkm/mrIpaT1VCTcRWpodym','Françoise','Dubisy','francoise.dubisy@henallux.be',false,STR_TO_DATE('01/01/1990','%d/%m/%Y'),'Rue Joseph Calozet, 19 - 5000 Namur',
  'ROLE_USER', true, true, true, true),
@@ -148,7 +148,7 @@ INSERT INTO `Product` (`product_price`, `category_id`, `image_url`) VALUES
 (24.15,7,'https://images-na.ssl-images-amazon.com/images/I/81h%2ByjJoOXL._SY550_.jpg'),
 (16.95,7,'https://images-na.ssl-images-amazon.com/images/I/91pnuGTQd%2BL._SY550_.jpg'),
 (14.99,3,'https://cdn.shopify.com/s/files/1/0552/1401/products/12997_Naruto_NarutoRasengan_POP_GLAM_HiRes.jpg?v=1481823527'),
-(127.57,3,'https://www.nautiljon.com/images/goodies/00/31/mini/overlord_-_albedo_good_smile_company_4913.jpg?11533681197');
+(127.57,3,'http://www.kana.fr/assets/uploads/2017/07/Capture-d%E2%80%99e%CC%81cran-2017-07-31-a%CC%80-10.37.19.png');
 
 INSERT INTO `Product_translation` (`product_id`,`language_id`,`name`,`description`) VALUES
 -- Insertion des mangas 
