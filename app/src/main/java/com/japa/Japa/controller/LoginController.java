@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.websocket.OnError;
+
 @Controller
 @RequestMapping("/login")
 public class LoginController extends MainController {
@@ -22,5 +24,10 @@ public class LoginController extends MainController {
         model.addAttribute("categories", this.categoryDAO.getCategories());
         model.addAttribute("current_user", user);
         return "integrated:login";
+    }
+
+    @OnError
+    public String error () {
+        return "integrated:error";
     }
 }

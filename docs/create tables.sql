@@ -1,10 +1,10 @@
 /*DROP TABLES
-DROP TABLE `ProductTranslation`;
+DROP TABLE `Product_Translation`;
 DROP TABLE `Language`;
 DROP TABLE `Promo`;
 DROP TABLE `Promotion`;
 DROP TABLE `Hierarchy`;
-DROP TABLE `ProductLine`;
+DROP TABLE `Product_Line`;
 DROP TABLE `Product`;
 DROP TABLE `Category`;
 DROP TABLE `Order`;
@@ -140,7 +140,7 @@ INSERT INTO `Language` (`name`) VALUES ('Français'), ('English');
    
 INSERT INTO `Product` (`product_price`, `category_id`, `image_url`) VALUES 
 (7.5,4, 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/SNote.jpg/220px-SNote.jpg'),
-(8,4, 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d6/Shingeki_no_Kyojin_manga_volume_1.jpg/220px-Shingeki_no_Kyojin_manga_volume_1.jpg'),
+(8,4, 'https://i.pinimg.com/originals/66/d9/57/66d95707c19fb26cf967079f7870caac.png'),
 (7,5, 'https://f01.mrcdn.info/file/mrportal/h/9/5/c/l8.dg-7m-En.png'),
 (8.5,5,'https://www.nautiljon.com/images/manga/00/67/blue_spring_ride_1276.jpg'),
 (34.95,6, 'http://product.kaze.fr/product/saison_1_my_hero_academia_dvd/3d/web/MHA_integrale_DVD_3D_0x233.png'),
