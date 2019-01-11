@@ -151,13 +151,13 @@ INSERT INTO `Product` (`product_price`, `category_id`, `image_url`) VALUES
 (127.57,3,'http://www.kana.fr/assets/uploads/2017/07/Capture-d%E2%80%99e%CC%81cran-2017-07-31-a%CC%80-10.37.19.png');
 
 INSERT INTO `Product_Translation` (`product_id`,`language_id`,`name`,`description`) VALUES
--- Insertion des mangas 
+-- Insertion des mangas user
 (1, 1, 'Death note', 'Light Yagami, jeune étudiant japonais de 17 ans surdoué qui juge le monde tel qu\'il est : criminel, corrompu et noyé dans l\'injustice ; trouve un beau jour, par hasard, un cahier noir intitulé "Death Note" (Cahier de la mort). Des instructions y sont écrites : le cahier stipule "la personne dont le nom est inscrit dans ce carnet meurt".'),
 (1,2,'Death Note', 'Light Yagami, a young, gifted 17-year-old Japanese student who judges the world as he is, criminal, corrupted and drowned in injustice, finds a beautiful day, by chance, a black notebook titled "Death Note" (Death Book) ), instructions are written there, the notebook stipulates "the person whose name is written in this notebook dies"'),
 (2,1,'L\'attaque des titans', 'La race humaine est au bord de l\'extinction suite à l\'arrivée de géants dévorants les humains. Mais heureusement, les derniers survivants réussissent à se fortifier derrière d\'immenses murs empêchant tous géants de les atteindre. Durant plusieurs années, les humains ont pu enfin vivre en paix. Mais, un beau jour, un géant réussit à faire une brèche dans l\'enceinte. Maintenant qu\'ils sont de retour, la guerre est déclarée, Eren compte bien se venger du mal qui a été fait aux habitants de la ville et décide d\'éliminer tous ces êtres nuisibles un par un.'),
 (2,2,'Attack on titans', 'The human race is on the verge of extinction following the arrival of giants devouring humans. But fortunately, the last survivors succeed in fortifying themselves behind immense walls preventing all giants from reaching them. For many years, humans have finally been able to live in peace. But, one day, a giant managed to make a breach in the enclosure. Now that they are back, the war is declared, Eren is eager to avenge the harm that has been done to the inhabitants of the city and decides to eliminate all these harmful beings one by one.'),
 (3,1,'Orange','Un matin, alors qu\'elle se rend au lycée, Naho reçoit une drôle de lettre… une lettre du futur ! La jeune femme qu\'elle est devenue dix ans plus tard, rongée par de nombreux remords, souhaite aider celle qu\'elle était autrefois à ne pas faire les mêmes erreurs qu\'elle. Aussi, elle a décrit, dans un long courrier, les événements qui vont se dérouler dans la vie de Naho lors des prochains mois, lui indiquant même comment elle doit se comporter. Mais Naho, a bien du mal à y croire, à cette histoire… Et de toute façon, elle manque bien trop d\'assurance en elle pour suivre certaines directives indiquées dans ce curieux courrier. Pour le moment, la seule chose dont elle est sûre, c\'est que Kakeru, le nouvel élève de la classe, ne la laisse pas indifférent…'),
-(3,2,'Orange','One morning, while she goes to high school, Naho receives a funny letter ... a letter of the future! The young woman she became ten years later, devoured by many remorse, wants to help the one she was formerly not to make the same mistakes she. She also described in a long letter the events that will take place in Naho\'s life in the coming months, even telling her how she should behave. But Naho, has a hard time believing it, this story ... And anyway, it is far too much insurance in it to follow certain guidelines indicated in this curious mail. For the moment, the only thing she is sure of is that Kakeru, the new student of the class, does not leave her indifferent ...'),
+(3,2,'Orange','One morning, while she goes to high school, Naho receives a funnyproduct_translationproduct_translationpromotionpromo letter ... a letter of the future! The young woman she became ten years later, devoured by many remorse, wants to help the one she was formerly not to make the same mistakes she. She also described in a long letter the events that will take place in Naho\'s life in the coming months, even telling her how she should behave. But Naho, has a hard time believing it, this story ... And anyway, it is far too much insurance in it to follow certain guidelines indicated in this curious mail. For the moment, the only thing she is sure of is that Kakeru, the new student of the class, does not leave her indifferent ...'),
 (4,1,'Ao Haru Ride', 'Alors que Futaba Yoshioka fait son entrée au lycée, elle ne garde pas de bons souvenirs du collège, où le garçon dont elle était amoureuse, Kô Tanaka, partit sans qu\'elle ait pu lui avouer ses sentiments. La chance tourne puisqu\'elle le retrouve par hasard au lycée. Cependant, il ne porte pas le même nom et sa personnalité a quelque peu changé. Avec ses nouveaux amis, elle va apprendre à l\'apprivoiser et à se rapprocher de lui, mais aussi à le connaître et à trouver de nouveau confiance en elle.'),
 (4,2, 'Blue Spring Ride', 'While Futaba Yoshioka enters high school, she does not have fond memories of college, where the boy she was in love with, Ko Tanaka, left without her having to confess his feelings. Luck turns because she finds it by chance in high school. However, he does not have the same name and his personality has changed somewhat. With her new friends, she will learn to tame him and get closer to him, but also to know him and to find new confidence in her.'),
 -- Insertion des animes
@@ -175,16 +175,15 @@ INSERT INTO `Product_Translation` (`product_id`,`language_id`,`name`,`descriptio
 (10,1,'Figurine Overlord - Albedo', 'Figurine à l\'échelle 1/8e représentant Albedo avec les ailes légèrement déployées derrière elle.'),
 (10,2,'Overlord - Albedo figurine', 'Figurine scale 1 / 8th representing Albedo with wings slightly spread behind her.');
 
+INSERT INTO `Promotion` (`label`, `pourcent`, `start_date`, `end_date`) VALUES
+('Winter discount', 30.00, STR_TO_DATE('01/01/2019','%d/%m/%Y'), STR_TO_DATE('31/01/19','%d/%m/%Y')),
+('70%-Night!', 70.00, STR_TO_DATE('01/02/2019','%d/%m/%Y'), STR_TO_DATE('02/02/2019','%d/%m/%Y'));
 
 
 /*
 INSERT INTO `Order` (`date`, `user_id`) VALUES ();
 
-INSERT INTO `ProductLine` (`quantity`, `orderProductPrice`, `lineNumber`, `order_id`, `product_id`) VALUES ();
-
-INSERT INTO `Promotion` (`label`, `pourcent`, `startDate`, `endDate`) VALUES ();
+INSERT INTO `ProductLine` (`quantity`, `order_product_price`, `line_number`, `order_id`, `product_id`) VALUES ();
 
 INSERT INTO  `Promo` (`product_id`, `promotion_id`) VALUES ();
-
-
 */
