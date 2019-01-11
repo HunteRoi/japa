@@ -104,11 +104,11 @@
             </div>
         </footer>
 
-        <!-- Bootstrap Core -->
+        <!-- Bootstrap Core and such -->
+        <script src='<spring:url value="/js/jquery.min.js"/>'></script>
+        <script src='<spring:url value="/js/bootstrap.min.js"/>'></script>
+        <script src='<spring:url value="/js/bootstrap.bundle.min.js"/>'></script>
+        <script src='<spring:url value="/js/anchor.min.js"/>'></script>
         <script src='<spring:url value="/js/popper.min.js"/>'></script>
-        <script src='<spring:url value="https://code.jquery.com/jquery-3.3.1.slim.min.js"/>'></script>
-        <script src='<spring:url value="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js"/>'></script>
-        <script src='<spring:url value="vendor/jquery/jquery.min.js"/>'></script>
-        <script src='<spring:url value="vendor/bootstrap/js/bootstrap.bundle.min.js"/>'></script>
     </body>
 </html>

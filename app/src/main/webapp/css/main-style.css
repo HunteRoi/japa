@@ -258,3 +258,8 @@ html, body {
     margin-right : 20px;
     color : white;
 }
+
+.imgCar{
+    width : 150px;
+    height: 250px;
+}

@@ -18,8 +18,7 @@ public class Product {
     }
 
     public String getFormatedProductPrice() {
-        NumberFormat format = new DecimalFormat("#.00");
-        return format.format(productPrice);
+        return new DecimalFormat("0.00").format(productPrice);
     }
 
     public void setProductPrice(double productPrice) {
@@ -54,9 +53,7 @@ public class Product {
         return description;
     }
 
-    public String getShortDescription() {
-        return description.length() < 150 ? description : description.substring(0,150)+"...";
-    }
+    public String getShortDescription() { return description.length() <= 150 ? description : description.substring(0,150)+"..."; }
 
     public void setDescription(String description) {
         this.description = description;

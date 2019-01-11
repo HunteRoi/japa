@@ -35,10 +35,7 @@ public class CommandLine {
         return linePrice;
     }
 
-    public String getFormatedLinePrice(){
-        NumberFormat format = new DecimalFormat("#.00");
-        return format.format(linePrice);
-    }
+    public String getFormatedLinePrice() { return new DecimalFormat("0.00").format(linePrice); }
 
     public void setLinePrice()
     {
@@ -51,7 +48,7 @@ public class CommandLine {
     }
 
     public void minusQuantity(){
-        if(quantity > 1) quantity--;
+        quantity--;
         setLinePrice();
     }
 }

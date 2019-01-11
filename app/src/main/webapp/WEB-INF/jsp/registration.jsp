@@ -90,9 +90,9 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                                 <spring:message code="male" var="male"/>
-                                <form:radiobutton path="isMale" value="true" label="${male}"/>
+                                <form:radiobutton path="isMale" value="true" label=" ${male}"/>
                                 <spring:message code="female" var="female"/>
-                                <form:radiobutton path="isMale" value="false" cssStyle="margin-left: 10px;" label="${female}"/>
+                                <form:radiobutton path="isMale" value="false" cssStyle="margin-left: 10px;" label=" ${female}"/>
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                <form:input path="email" name="email"  class="form-control"  type="text"/>
+                                <form:input path="email" name="email"  class="form-control"  type="email"/>
                             </div>
                         </div>
                     </div>
