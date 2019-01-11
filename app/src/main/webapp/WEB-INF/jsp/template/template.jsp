@@ -3,6 +3,16 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <html>
     <head>
+        <style>
+            #user{
+                margin-top : auto;
+                margin-bottom : auto;
+                margin-right : 20px;
+                color : white;
+            }
+        </style>
+    </head>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -49,7 +59,12 @@
                             </c:choose>
                         </c:forEach>
                     </ul>
-                    <button type="button" onclick="location.href='<spring:url value="/checkout"/>'" z-index="1" class="mr-1 btn btn-default navbar-btn">
+                    <sec:authorize access="isAuthenticated()">
+                        <p id="user">
+                            ${pageContext.request.userPrincipal.name}
+                        </p>
+                    </sec:authorize>
+                    <button type="button" onclick="location.href='<spring:url value="/cart/checkout"/>'" z-index="1" class="mr-1 btn btn-default navbar-btn">
                         <i class="fas fa-shopping-cart"></i>
                     </button>
                     <div class="dropdown">

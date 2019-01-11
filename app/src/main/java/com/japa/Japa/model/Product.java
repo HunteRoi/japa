@@ -54,7 +54,9 @@ public class Product {
         return description;
     }
 
-    public String getShortDescription() { return description.substring(0,150)+"..."; }
+    public String getShortDescription() {
+        return description.length() < 150 ? description : description.substring(0,150)+"...";
+    }
 
     public void setDescription(String description) {
         this.description = description;

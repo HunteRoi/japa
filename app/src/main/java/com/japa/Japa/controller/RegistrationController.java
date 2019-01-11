@@ -36,15 +36,6 @@ public class RegistrationController extends MainController{
         return "integrated:registration";
     }
 
-    /*@InitBinder
-    public void initBinder(WebDataBinder binder) {
-        // tell spring to set empty values as null instead of empty string.
-        binder.registerCustomEditor( String.class, new StringTrimmerEditor( true ));
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
-        simpleDateFormat.setLenient(false);
-        binder.registerCustomEditor( Date.class, new CustomDateEditor( simpleDateFormat,false));
-    }*/
-
     @RequestMapping(value ="signup/register", method = {RequestMethod.GET, RequestMethod.POST})
     public String getFormData(@Valid @ModelAttribute(value = "newUser") User newUser, final BindingResult errors){
         if(errors.hasErrors()){

@@ -32,6 +32,7 @@ public class ProviderConverter {
         product.setId(productEntity.getProduct_id());
         product.setName(translation.getName());
         product.setDescription(translation.getDescription());
+        product.setCategory(categoryEntityToCategoryModel(productEntity.getCategory()));
         return  product;
     }
 
