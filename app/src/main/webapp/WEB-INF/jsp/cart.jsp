@@ -56,7 +56,7 @@
                 <!--  -->
                 <div class="flex-w flex-sb-m p-t-26 p-b-30">
                     <p><span class="m-text22 w-size19 w-full-sm">Products Total:</span> <span class="m-text21 w-size20 w-full-sm">${productsTotal}€</span></p>
-                    <p><span class="m-text22 w-size19 w-full-sm">Sold Total:</span> <span class="m-text21 w-size20 w-full-sm">${soldTotal}€</span></p>
+                    <p><span class="m-text22 w-size19 w-full-sm">Sold Total:</span> <span class="m-text21 w-size20 w-full-sm">${discountTotal}€</span></p>
                     <p><span class="m-text22 w-size19 w-full-sm">Total:</span> <span class="m-text21 w-size20 w-full-sm">${total}€</span></p>
                 </div>
 

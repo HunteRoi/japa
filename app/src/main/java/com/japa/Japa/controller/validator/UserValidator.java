@@ -14,8 +14,7 @@ public class UserValidator implements Validator {
     }
 
     @Override
-    public void validate(Object o, Errors errors) {
-        ValidationUtils.rejectIfEmpty(errors,"username","required.username","The username is required");
-
+    public void validate(Object o, Errors e) {
+        ValidationUtils.rejectIfEmptyOrWhitespace(e,"username","required.username","The username is required");
     }
 }

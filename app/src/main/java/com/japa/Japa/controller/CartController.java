@@ -28,7 +28,7 @@ public class CartController extends MainController{
         model.addAttribute("categories", this.categoryDAO.getCategories());
         model.addAttribute("products", shoppingCart.getCart().values());
         model.addAttribute("productsTotal", shoppingCart.getFormatedTotal());
-        model.addAttribute("soldTotal", shoppingCart.getFormatedSoldTotal());
+        model.addAttribute("discountTotal", shoppingCart.getFormatedDiscountTotal());
         model.addAttribute("total",shoppingCart.getFormatedFullTotal());
 
         return "integrated:cart";

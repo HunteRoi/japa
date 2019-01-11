@@ -2,7 +2,6 @@ package com.japa.Japa.model;
 
 
 import java.text.DecimalFormat;
-import java.util.Collection;
 import java.util.HashMap;
 
 public class Cart {
@@ -37,11 +36,11 @@ public class Cart {
 
     public String getFormatedTotal() { return format.format(getTotal()); }
 
-    public double getSoldTotal() { return 0.00; }
+    public double getDiscountTotal() { return 0.00; }
 
-    public String getFormatedSoldTotal() { return format.format(getSoldTotal()); }
+    public String getFormatedDiscountTotal() { return format.format(getDiscountTotal()); }
 
-    public double getFullTotal() { return getTotal() - getSoldTotal(); }
+    public double getFullTotal() { return getTotal() - getDiscountTotal(); }
 
     public String getFormatedFullTotal() { return format.format(getFullTotal()); }
 
