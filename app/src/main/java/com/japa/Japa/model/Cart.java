@@ -2,7 +2,9 @@ package com.japa.Japa.model;
 
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class Cart {
     private HashMap<Integer, CommandLine> products;
@@ -10,7 +12,11 @@ public class Cart {
 
     public Cart(){
         products = new HashMap<>();
-        format = new DecimalFormat("0.00");
+        format = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+    }
+
+    public void reset() {
+        products = new HashMap<>();
     }
 
     public void addProduct(Product product){

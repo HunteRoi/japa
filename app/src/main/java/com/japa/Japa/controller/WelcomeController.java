@@ -24,4 +24,6 @@ public class WelcomeController extends MainController {
 
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String homeRedirect (Model model) { return "redirect:/home"; }
+
+
 }

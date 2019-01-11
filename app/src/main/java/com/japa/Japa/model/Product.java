@@ -1,7 +1,9 @@
 package com.japa.Japa.model;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Product {
     private double productPrice;
@@ -18,7 +20,7 @@ public class Product {
     }
 
     public String getFormatedProductPrice() {
-        return new DecimalFormat("0.00").format(productPrice);
+        return new DecimalFormat("0.00", DecimalFormatSymbols.getInstance(Locale.ENGLISH)).format(productPrice);
     }
 
     public void setProductPrice(double productPrice) {

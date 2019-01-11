@@ -63,10 +63,9 @@
                 </div>
 
                 <div class="size15 trans-0-4">
-                    <!-- Button -->
-                    <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-                        <spring:message code="proceedCheckout"/>
-                    </button>
+                    <a shape="circle" href='<spring:url value="${cart.getFormatedWithDiscountTotal() != '0.00' ? '/cart/validate' : ''}"/>'>
+                        <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt='<spring:message code="proceedCheckout"/>'>
+                    </a>
                 </div>
             </div>
         </div>

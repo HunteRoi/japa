@@ -3,10 +3,7 @@ package com.japa.Japa.controller;
 import com.japa.Japa.business.PromotionCalculation;
 import com.japa.Japa.dataAccess.dao.CategoryDAO;
 import com.japa.Japa.dataAccess.dao.ProductDAO;
-import com.japa.Japa.dataAccess.dao.PromoDAO;
-import com.japa.Japa.dataAccess.dao.PromotionDAO;
 import com.japa.Japa.model.Cart;
-import com.japa.Japa.model.Promo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -17,6 +14,7 @@ import java.util.Locale;
 
 @Controller
 @SessionAttributes({"shoppingCart"})
+@RequestMapping("/cart")
 public class CartController extends MainController{
 
     private ProductDAO productDAO;
@@ -29,7 +27,7 @@ public class CartController extends MainController{
         this.promotionCalculation = promotionCalculation;
     }
 
-    @RequestMapping(value = {"/cart/checkout"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/checkout", method = RequestMethod.GET)
     public String home (Model model, @ModelAttribute(value = "shoppingCart") Cart shoppingCart, Locale locale) {
         model.addAttribute("categories", this.categoryDAO.getCategories());
         Cart cart = promotionCalculation.getCartDiscount(shoppingCart, locale.getLanguage());
@@ -38,21 +36,34 @@ public class CartController extends MainController{
         return "integrated:cart";
     }
 
-    @RequestMapping(value = {"/cart/addProduct/{productID}"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/addProduct/{productID}", method = RequestMethod.POST)
     public String addProductToCart (@PathVariable String productID, @ModelAttribute(value = "shoppingCart") Cart shoppingCart, Locale locale) {
         shoppingCart.addProduct(this.productDAO.getProductById(Integer.parseInt(productID), locale.getLanguage()));
         return "redirect:/product/"+productID;
     }
 
-    @RequestMapping(value = {"/cart/minus/{productID}"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/minus/{productID}", method = RequestMethod.POST)
     public String minusQuantityProduct (@PathVariable String productID, @ModelAttribute(value = "shoppingCart") Cart shoppingCart) {
         shoppingCart.removeProduct(Integer.parseInt(productID));
         return "redirect:/cart/checkout";
     }
 
-    @RequestMapping(value = {"/cart/plus/{productID}"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/plus/{productID}", method = RequestMethod.POST)
     public String plusQuantityProduct (@PathVariable String productID, @ModelAttribute(value = "shoppingCart") Cart shoppingCart, Locale locale) {
         shoppingCart.addProduct(this.productDAO.getProductById(Integer.parseInt(productID), locale.getLanguage()));
         return "redirect:/cart/checkout";
+    }
+
+    @RequestMapping(value = "/validate")
+    public String validate (Model model, @ModelAttribute(value="shoppingCart") Cart shoppingCart) {
+        model.addAttribute("categories", this.categoryDAO.getCategories());
+        model.addAttribute("cart", shoppingCart);
+        return "integrated:validation";
+    }
+
+    @RequestMapping(value="/bought", method = RequestMethod.GET)
+    public String homeRedirectFromPaypal () {
+        getCart().reset();
+        return "redirect:/home";
     }
 }
