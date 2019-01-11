@@ -24,10 +24,10 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 <form:input  path="username" name="username"  class="form-control"  type="text"/>
-                                <span>
-                                    <form:errors path="username"/>
-                                </span>
                             </div>
+                            <p class="error">
+                                <form:errors path="username"/>
+                            </p>
                         </div>
                     </div>
 
@@ -38,18 +38,24 @@
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 <form:input  path="password" name="password" class="form-control"  type="password"/>
                             </div>
+                            <p class="error">
+                                <form:errors path="password"/>
+                            </p>
                         </div>
                     </div>
 
-                    <!--<div class="form-group">
-                        <label  class="col-md-4 control-label"><spring:message code="passwordValidation"/></label>
-                        <div class="col-md-4 inputGroupContainer">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input   name="password" class="form-control"  type="text"/>
-                            </div>
+                <div class="form-group">
+                    <form:label path="password" class="col-md-4 control-label"><spring:message code="passwordValidation"/></form:label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <form:input  path="checkPassword" name="checkPassword" class="form-control"  type="password"/>
                         </div>
-                    </div>-->
+                        <p class="error">
+                            <form:errors path="checkPassword"/>
+                        </p>
+                    </div>
+                </div>
 
                     <div class="form-group">
                         <form:label path="firstName" class="col-md-4 control-label"><spring:message code="firstName"/></form:label>
@@ -58,6 +64,9 @@
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 <form:input  path="firstName" name="first_name" class="form-control"  type="text"/>
                             </div>
+                            <p class="error">
+                                <form:errors path="firstName"/>
+                            </p>
                         </div>
                     </div>
 
@@ -70,6 +79,9 @@
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 <form:input path="lastName" name="last_name"  class="form-control"  type="text"/>
                             </div>
+                            <p class="error">
+                                <form:errors path="lastName"/>
+                            </p>
                         </div>
                     </div>
 
@@ -81,6 +93,9 @@
                                 <spring:message code="datePattern" var="datePattern"/>
                                 <form:input path="birthdate" name="birthdate"  class="form-control"  placeholder='${datePattern}' type="text"/>
                             </div>
+                            <p class="error">
+                                <form:errors path="birthdate"/>
+                            </p>
                         </div>
                     </div>
 
@@ -105,6 +120,9 @@
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                                 <form:input path="email" name="email"  class="form-control"  type="email"/>
                             </div>
+                            <p class="error">
+                                <form:errors path="email"/>
+                            </p>
                         </div>
                     </div>
 
@@ -117,6 +135,9 @@
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                                 <form:input path="address" name="address"  class="form-control" type="text"/>
                             </div>
+                            <p class="error">
+                                <form:errors path="username"/>
+                            </p>
                         </div>
                     </div>
 

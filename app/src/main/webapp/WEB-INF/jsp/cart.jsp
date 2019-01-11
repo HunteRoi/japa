@@ -11,7 +11,7 @@
                             <th class="column-1"></th>
                             <th class="column-2">Product</th>
                             <th class="column-3">Price</th>
-                            <th class="column4">Sold</th>
+                            <th class="column-4">Sold</th>
                             <th class="column-5 p-l-70">Quantity</th>
                             <th class="column-6">Total</th>
                         </tr>

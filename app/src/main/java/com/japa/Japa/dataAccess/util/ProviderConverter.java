@@ -3,11 +3,14 @@ package com.japa.Japa.dataAccess.util;
 import com.japa.Japa.dataAccess.entity.CategoryEntity;
 import com.japa.Japa.dataAccess.entity.ProductEntity;
 import com.japa.Japa.dataAccess.entity.ProductTranslationEntity;
+import com.japa.Japa.dataAccess.entity.PromotionEntity;
 import com.japa.Japa.model.Category;
 import com.japa.Japa.model.Product;
+import com.japa.Japa.model.Promotion;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.Date;
 
 @Component
 public class ProviderConverter {
@@ -34,6 +37,19 @@ public class ProviderConverter {
         product.setDescription(translation.getDescription());
         product.setCategory(categoryEntityToCategoryModel(productEntity.getCategory()));
         return  product;
+    }
+
+    public Promotion promotionEntityToPromotionModel(PromotionEntity promotionEntity){
+        Promotion promotion = new Promotion();
+        promotion.setPourcent(promotionEntity.getPourcent());
+        promotion.setStartDate(dataSqlToDateUtil(promotionEntity.getStart_date()));
+        promotion.setEndDate(dataSqlToDateUtil(promotionEntity.getEnd_date()));
+        promotion.setPromotion_id(promotionEntity.getPromotion_id());
+        return promotion;
+    }
+
+    public Date dataSqlToDateUtil(java.sql.Date date){
+        return new Date(date.getTime());
     }
 
 

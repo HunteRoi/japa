@@ -56,7 +56,7 @@
                     </ul>
                     <sec:authorize access="isAuthenticated()">
                         <p id="user">
-                            ${pageContext.request.userPrincipal.name}
+                            <spring:message code="welcome"/> ${pageContext.request.userPrincipal.name}!
                         </p>
                     </sec:authorize>
                     <button type="button" onclick="location.href='<spring:url value="/cart/checkout"/>'" z-index="1" class="mr-1 btn btn-default navbar-btn">

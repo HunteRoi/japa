@@ -1,18 +1,19 @@
 package com.japa.Japa.model;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 public class CommandLine {
 
     private Product product;
     private int quantity;
     private double linePrice;
+    private double discount;
 
     public CommandLine(Product product){
         setProduct(product);
         setQuantity(1);
         setLinePrice();
+        setDiscount(0);
     }
 
     public Product getProduct() {
@@ -40,6 +41,14 @@ public class CommandLine {
     public void setLinePrice()
     {
         this.linePrice = product.getProductPrice() * quantity;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 
     public void plusQuantity(){

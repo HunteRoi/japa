@@ -38,17 +38,13 @@ public class RegistrationController extends MainController{
 
     @RequestMapping(value ="signup/register", method = {RequestMethod.GET, RequestMethod.POST})
     public String getFormData(@Valid @ModelAttribute(value = "newUser") User newUser, final BindingResult errors){
-        System.out.println(newUser.getUsername());
-        System.out.println(newUser.getPassword());
-        System.out.println(newUser.getFirstName());
-        System.out.println(newUser.getLastName());
-        System.out.println(newUser.getAddress());
-        System.out.println(newUser.getBirthdate());
-
+        if(!newUser.getPassword().equals(newUser.getCheckPassword())){
+            errors.addError(new ObjectError("checkPassword", "Passwords dont match"));
+        }
         if(errors.hasErrors()){
             System.out.println("ERRORS HERE MA BOI");
             errors.getFieldErrors().stream().forEach(f->System.out.println(f.getField() + " - " + f.getDefaultMessage()));
-            return "redirect:/signup";
+            return "integrated:registration";
         }
         return "";
     }

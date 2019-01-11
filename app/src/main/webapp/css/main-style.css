@@ -263,3 +263,7 @@ html, body {
     width : 150px;
     height: 250px;
 }
+
+.error{
+    color:red;
+}
