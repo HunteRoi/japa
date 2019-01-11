@@ -1,8 +1,12 @@
 package com.japa.Japa.controller;
 
+import com.japa.Japa.business.PromotionCalculation;
 import com.japa.Japa.dataAccess.dao.CategoryDAO;
 import com.japa.Japa.dataAccess.dao.ProductDAO;
+import com.japa.Japa.dataAccess.dao.PromoDAO;
+import com.japa.Japa.dataAccess.dao.PromotionDAO;
 import com.japa.Japa.model.Cart;
+import com.japa.Japa.model.Promo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -16,21 +20,21 @@ import java.util.Locale;
 public class CartController extends MainController{
 
     private ProductDAO productDAO;
+    private PromotionCalculation promotionCalculation;
 
     @Autowired
-    public CartController(CategoryDAO categoryDAO, MessageSource messageSource, ProductDAO productDAO) {
+    public CartController(CategoryDAO categoryDAO, MessageSource messageSource, ProductDAO productDAO, PromotionCalculation promotionCalculation) {
         super(categoryDAO, messageSource);
         this.productDAO = productDAO;
+        this.promotionCalculation = promotionCalculation;
     }
 
     @RequestMapping(value = {"/cart/checkout"}, method = RequestMethod.GET)
-    public String home (Model model, @ModelAttribute(value = "shoppingCart") Cart shoppingCart) {
+    public String home (Model model, @ModelAttribute(value = "shoppingCart") Cart shoppingCart, Locale locale) {
         model.addAttribute("categories", this.categoryDAO.getCategories());
+        Cart cart = promotionCalculation.getCartDiscount(shoppingCart, locale.getLanguage());
         model.addAttribute("products", shoppingCart.getCart().values());
-        model.addAttribute("productsTotal", shoppingCart.getFormatedTotal());
-        model.addAttribute("discountTotal", shoppingCart.getFormatedDiscountTotal());
-        model.addAttribute("total",shoppingCart.getFormatedFullTotal());
-
+        model.addAttribute("cart", shoppingCart);
         return "integrated:cart";
     }
 

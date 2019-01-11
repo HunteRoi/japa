@@ -10,10 +10,11 @@
                         <tr class="table-head">
                             <th class="column-1"></th>
                             <th class="column-2">Product</th>
-                            <th class="column-3">Price</th>
-                            <th class="column-4">Sold</th>
+                            <th class="column-3">Unity price</th>
+                            <th class="column-4">Unity discount</th>
                             <th class="column-5 p-l-70">Quantity</th>
-                            <th class="column-6">Total</th>
+                            <th class="column-6">Total without discount</th>
+                            <th class="column-6">Total with discout</th>
                         </tr>
                         <c:forEach var="commandLine" items="${products}">
                             <tr class="table-row">
@@ -23,8 +24,8 @@
                                     </div>
                                 </td>
                                 <td class="column-2">${commandLine.getProduct().getName()}</td>
-                                <td class="column-3">${commandLine.getProduct().getFormatedProductPrice()}€</td>
-                                <td class="column-4">0.00€</td>
+                                <td class="column-3">${commandLine.getFormatedUnitPrice()}€</td>
+                                <td class="column-4">${commandLine.getFormatedUnitDiscountPrice()}€</td>
                                 <td class="column-5">
                                     <div class="flex-w bo5 of-hidden w-size17">
                                         <form class="inliner" action="/webshop/cart/minus/${commandLine.getProduct().getId()}" method="post">
@@ -41,7 +42,8 @@
                                         </form>
                                     </div>
                                 </td>
-                                <td class="column-6">${commandLine.getFormatedLinePrice()}€</td>
+                                <td class="column-6">${commandLine.getFormatedPriceWithoutDiscount()}€</td>
+                                <td class="column-6">${commandLine.getFormatedPriceWithDiscount()}€</td>
                             </tr>
                         </c:forEach>
                     </table>
@@ -55,9 +57,9 @@
                 </h5>
                 <!--  -->
                 <div class="flex-w flex-sb-m p-t-26 p-b-30">
-                    <p><span class="m-text22 w-size19 w-full-sm">Products Total:</span> <span class="m-text21 w-size20 w-full-sm">${productsTotal}€</span></p>
-                    <p><span class="m-text22 w-size19 w-full-sm">Sold Total:</span> <span class="m-text21 w-size20 w-full-sm">${discountTotal}€</span></p>
-                    <p><span class="m-text22 w-size19 w-full-sm">Total:</span> <span class="m-text21 w-size20 w-full-sm">${total}€</span></p>
+                    <p><span class="m-text22 w-size19 w-full-sm">Products Total:</span> <span class="m-text21 w-size20 w-full-sm">${cart.getFormatedWithoutDiscountTotal()}€</span></p>
+                    <p><span class="m-text22 w-size19 w-full-sm">Sold Total:</span> <span class="m-text21 w-size20 w-full-sm">${cart.getFormatedTotalDiscount()}€</span></p>
+                    <p><span class="m-text22 w-size19 w-full-sm">Total:</span> <span class="m-text21 w-size20 w-full-sm">${cart.getFormatedWithDiscountTotal()}€</span></p>
                 </div>
 
                 <div class="size15 trans-0-4">

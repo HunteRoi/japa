@@ -6,14 +6,14 @@ public class CommandLine {
 
     private Product product;
     private int quantity;
-    private double linePrice;
-    private double discount;
+    private double unitDiscount;
+    private DecimalFormat decimalFormat;
 
     public CommandLine(Product product){
         setProduct(product);
         setQuantity(1);
-        setLinePrice();
-        setDiscount(0);
+        setUnitDiscount(0);
+        decimalFormat = new DecimalFormat("0.00");
     }
 
     public Product getProduct() {
@@ -32,32 +32,35 @@ public class CommandLine {
         this.quantity = quantity;
     }
 
-    public double getLinePrice() {
-        return linePrice;
+    public String getFormatedPriceWithoutDiscount() { return decimalFormat.format(getPriceWithoutDiscount()); }
+
+    public String getFormatedPriceWithDiscount() { return decimalFormat.format(getPriceWithDiscount()); }
+
+    public String getFormatedUnitPrice() {return decimalFormat.format(product.getProductPrice());}
+
+    public String getFormatedUnitDiscountPrice(){return decimalFormat.format(getUnitDiscount());}
+
+    public double getUnitDiscount() {
+        return unitDiscount;
     }
 
-    public String getFormatedLinePrice() { return new DecimalFormat("0.00").format(linePrice); }
-
-    public void setLinePrice()
-    {
-        this.linePrice = product.getProductPrice() * quantity;
+    public void setUnitDiscount(double discount) {
+        this.unitDiscount = discount;
     }
 
-    public double getDiscount() {
-        return discount;
+    public double getPriceWithoutDiscount(){
+        return product.getProductPrice() * quantity;
     }
 
-    public void setDiscount(double discount) {
-        this.discount = discount;
+    public double getPriceWithDiscount(){
+        return getPriceWithoutDiscount() - (unitDiscount * quantity);
     }
 
     public void plusQuantity(){
         quantity++;
-        setLinePrice();
     }
 
     public void minusQuantity(){
         quantity--;
-        setLinePrice();
     }
 }

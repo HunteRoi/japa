@@ -30,21 +30,25 @@ public class Cart {
         }
     }
 
-    public double getTotal() {
-        return products.values().stream().map(CommandLine::getLinePrice).reduce(0.0, (linePrice, total) -> total += linePrice);
+    public double getWithoutDiscountTotal() {
+        return products.values().stream().map(CommandLine::getPriceWithoutDiscount).reduce(0.0, (linePrice, total) -> total += linePrice);
     }
 
-    public String getFormatedTotal() { return format.format(getTotal()); }
+    public String getFormatedWithoutDiscountTotal() { return format.format(getWithoutDiscountTotal()); }
 
-    public double getDiscountTotal() { return 0.00; }
+    public double getDiscountTotal() {
+        return products.values().stream().map(CommandLine::getPriceWithDiscount).reduce(0.0, (linePrice, total) -> total += linePrice);
+    }
 
-    public String getFormatedDiscountTotal() { return format.format(getDiscountTotal()); }
+    public String getFormatedWithDiscountTotal() { return format.format(getDiscountTotal()); }
 
-    public double getFullTotal() { return getTotal() - getDiscountTotal(); }
+    public double getFullTotal() { return getWithoutDiscountTotal() - getDiscountTotal(); }
 
     public String getFormatedFullTotal() { return format.format(getFullTotal()); }
 
+    public double getTotalDiscount(){return getWithoutDiscountTotal() - getDiscountTotal();}
 
+    public String getFormatedTotalDiscount(){return format.format(getTotalDiscount());}
 
     public HashMap<Integer, CommandLine> getCart(){
         return products;

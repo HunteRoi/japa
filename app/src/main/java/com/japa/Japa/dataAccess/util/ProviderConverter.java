@@ -1,11 +1,9 @@
 package com.japa.Japa.dataAccess.util;
 
-import com.japa.Japa.dataAccess.entity.CategoryEntity;
-import com.japa.Japa.dataAccess.entity.ProductEntity;
-import com.japa.Japa.dataAccess.entity.ProductTranslationEntity;
-import com.japa.Japa.dataAccess.entity.PromotionEntity;
+import com.japa.Japa.dataAccess.entity.*;
 import com.japa.Japa.model.Category;
 import com.japa.Japa.model.Product;
+import com.japa.Japa.model.Promo;
 import com.japa.Japa.model.Promotion;
 import org.springframework.stereotype.Component;
 
@@ -37,6 +35,13 @@ public class ProviderConverter {
         product.setDescription(translation.getDescription());
         product.setCategory(categoryEntityToCategoryModel(productEntity.getCategory()));
         return  product;
+    }
+
+    public Promo promoEntityToPromoModel(PromoEntity promoEntity, String language){
+        Promo promo = new Promo();
+        promo.setPromotion(promotionEntityToPromotionModel(promoEntity.getPromotion()));
+        promo.setProduct(productEntityToProductModel(promoEntity.getProduct(), language));
+        return promo;
     }
 
     public Promotion promotionEntityToPromotionModel(PromotionEntity promotionEntity){
