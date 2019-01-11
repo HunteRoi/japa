@@ -251,3 +251,10 @@ html, body {
 .table-shopping-cart .table-row .column-2 {
     font-size: 15px;
 }
+
+#user{
+    margin-top : auto;
+    margin-bottom : auto;
+    margin-right : 20px;
+    color : white;
+}

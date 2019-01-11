@@ -4,12 +4,7 @@
 <html>
     <head>
         <style>
-            #user{
-                margin-top : auto;
-                margin-bottom : auto;
-                margin-right : 20px;
-                color : white;
-            }
+
         </style>
     </head>
     <head>

@@ -1,5 +1,8 @@
 package com.japa.Japa.model;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class CommandLine {
 
     private Product product;
@@ -30,6 +33,11 @@ public class CommandLine {
 
     public double getLinePrice() {
         return linePrice;
+    }
+
+    public String getFormatedLinePrice(){
+        NumberFormat format = new DecimalFormat("#.00");
+        return format.format(linePrice);
     }
 
     public void setLinePrice()

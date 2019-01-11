@@ -24,7 +24,9 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 <form:input  path="username" name="username"  class="form-control"  type="text"/>
-                                <p><form:errors path="username"/></p>
+                                <span>
+                                    <form:errors path="username"/>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -34,7 +36,7 @@
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <form:input  path="password" name="password" class="form-control"  type="text"/>
+                                <form:input  path="password" name="password" class="form-control"  type="password"/>
                             </div>
                         </div>
                     </div>
@@ -72,12 +74,12 @@
                     </div>
 
                     <div class="form-group">
-                        <form:label path="email" class="col-md-4 control-label"><spring:message code="birthdate"/></form:label>
+                        <form:label path="birthdate" class="col-md-4 control-label"><spring:message code="birthdate"/></form:label>
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" ></i></span>
-
-                                <form:input path="birthdate" name="birthdate"  class="form-control"  type="text"/>
+                                <spring:message code="datePattern" var="datePattern"/>
+                                <form:input path="birthdate" name="birthdate"  class="form-control"  placeholder='${datePattern}' type="text"/>
                             </div>
                         </div>
                     </div>

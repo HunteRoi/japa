@@ -47,7 +47,7 @@
                                     </form>
                                 </div>
                             </td>
-                            <td class="column-5">${commandLine.getLinePrice()}€</td>
+                            <td class="column-5">${commandLine.getFormatedLinePrice()}€</td>
                         </tr>
                     </c:forEach>
                 </table>

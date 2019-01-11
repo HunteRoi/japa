@@ -10,11 +10,11 @@ import java.util.Date;
 public class User {
     @NotNull
     @NotEmpty
-    @Size(min = 3)
+    @Size(min = 3, max = 50, message = "")
     private String username;
     @NotNull
     @NotEmpty
-    @Size(min = 3)
+    @Size(min = 3, max = 20)
     private String password;
     @NotNull
     @NotEmpty

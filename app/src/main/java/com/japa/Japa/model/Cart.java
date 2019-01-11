@@ -1,7 +1,6 @@
 package com.japa.Japa.model;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -14,14 +13,13 @@ public class Cart {
 
     public void addProduct(Product product){
         if(products.containsKey(product.getId())){
-            //products.get(product.getId()).
+            products.get(product.getId()).plusQuantity();
         }else{
             products.put(product.getId(), new CommandLine(product));
         }
     }
 
     public HashMap<Integer, CommandLine> getCart(){
-        Collection<CommandLine> test = products.values();
         return products;
     }
 }
