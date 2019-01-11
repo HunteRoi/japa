@@ -40,7 +40,7 @@
                             <c:choose>
                                 <c:when test="${!category.getHasNoChildren()}">
                                     <li class="nav-item dropdown">
-                                        <a class="big-a nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${category.getName()}</a>
+                                        <a class="big-a nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">${category.getName()}</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <c:forEach var="subCategory" items="${category.getSubCategories()}">
                                                 <a class="big-a dropdown-item" href='<spring:url value="/category/${category.getNormalizedName()}/${subCategory.getNormalizedName()}"/>'>${subCategory.getName()}</a>
@@ -105,9 +105,9 @@
         </footer>
 
         <!-- Bootstrap Core and such -->
-        <script src='<spring:url value="/js/jquery.min.js"/>'></script>
+        <script src='<spring:url value="https://code.jquery.com/jquery-3.3.1.slim.min.js"/>'></script>
         <script src='<spring:url value="/js/bootstrap.min.js"/>'></script>
-        <script src='<spring:url value="/js/bootstrap.bundle.min.js"/>'></script>
+        <script src='<spring:url value="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js"/>'></script>
         <script src='<spring:url value="/js/anchor.min.js"/>'></script>
         <script src='<spring:url value="/js/popper.min.js"/>'></script>
     </body>
