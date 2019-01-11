@@ -62,8 +62,8 @@ public class CartController extends MainController{
     }
 
     @RequestMapping(value="/bought", method = RequestMethod.GET)
-    public String homeRedirectFromPaypal () {
-        getCart().reset();
+    public String homeRedirectFromPaypal (@ModelAttribute(value = "shoppingCart") Cart shoppingCart) {
+        shoppingCart.reset();
         return "redirect:/home";
     }
 }

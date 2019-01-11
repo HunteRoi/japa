@@ -13,7 +13,7 @@
             <input type="hidden" name="currency_code"   value="EUR">
             <input type="hidden" name="lc"              value="en_UK">
 
-            <input type="hidden" name="return"          value='http://localhost:8082<spring:url value="/bought"/>'>
+            <input type="hidden" name="return"          value='http://localhost:8082<spring:url value="/cart/bought"/>'>
             <div style="text-align:center;">
                 <input class="btn btn-primary ml-1" type="submit" name="submit" value='<spring:message code="yes"/>'>
                 <a class="btn btn-primary" href='<spring:url value="/cart/checkout"/>'><spring:message code="no"/></a>
