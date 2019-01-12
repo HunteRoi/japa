@@ -2,14 +2,22 @@ package com.japa.Japa.controller;
 
 import com.japa.Japa.business.PromotionCalculation;
 import com.japa.Japa.dataAccess.dao.CategoryDAO;
+import com.japa.Japa.dataAccess.dao.OrderDAO;
 import com.japa.Japa.dataAccess.dao.ProductDAO;
+import com.japa.Japa.dataAccess.dao.ProductLineDAO;
+import com.japa.Japa.dataAccess.entity.OrderEntity;
 import com.japa.Japa.model.Cart;
+import com.japa.Japa.model.CommandLine;
+import com.japa.Japa.model.Order;
+import com.japa.Japa.model.Promo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -18,13 +26,17 @@ import java.util.Locale;
 public class CartController extends MainController{
 
     private ProductDAO productDAO;
+    private ProductLineDAO productLineDAO;
     private PromotionCalculation promotionCalculation;
+    private OrderDAO orderDAO;
 
     @Autowired
-    public CartController(CategoryDAO categoryDAO, MessageSource messageSource, ProductDAO productDAO, PromotionCalculation promotionCalculation) {
+    public CartController(CategoryDAO categoryDAO, MessageSource messageSource, ProductDAO productDAO, PromotionCalculation promotionCalculation, OrderDAO orderDAO, ProductLineDAO productLineDAO) {
         super(categoryDAO, messageSource);
         this.productDAO = productDAO;
+        this.productLineDAO = productLineDAO;
         this.promotionCalculation = promotionCalculation;
+        this.orderDAO = orderDAO;
     }
 
     @RequestMapping(value = "/checkout", method = RequestMethod.GET)
@@ -58,6 +70,13 @@ public class CartController extends MainController{
     public String validate (Model model, @ModelAttribute(value="shoppingCart") Cart shoppingCart) {
         model.addAttribute("categories", this.categoryDAO.getCategories());
         model.addAttribute("cart", shoppingCart);
+        Order order = new Order(new Date(), null, null);
+        OrderEntity orderEntity = orderDAO.saveOrder(order);
+        int ligne = 1;
+        for(CommandLine commandLine : shoppingCart.getCart().values()){
+            productLineDAO.saveProductLine(commandLine, ligne, orderEntity, productDAO.getProductEntityById(commandLine.getProduct().getId()));
+            ligne++;
+        }
         return "integrated:validation";
     }
 

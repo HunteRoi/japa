@@ -9,12 +9,12 @@
                     <table class="table-shopping-cart">
                         <tr class="table-head">
                             <th class="column-1"></th>
-                            <th class="column-2">Product</th>
-                            <th class="column-3">Unity price</th>
-                            <th class="column-4">Unity discount</th>
-                            <th class="column-5 p-l-70">Quantity</th>
-                            <th class="column-6">Total without discount</th>
-                            <th class="column-6">Total with discout</th>
+                            <th class="column-2"><spring:message code="product"/></th>
+                            <th class="column-3"><spring:message code="unityPrice"/></th>
+                            <th class="column-4"><spring:message code="unityDiscount"/></th>
+                            <th class="column-5 p-l-70"><spring:message code="quantity"/></th>
+                            <th class="column-6"><spring:message code="totalWithoutDiscount"/></th>
+                            <th class="column-6"><spring:message code="totalWithDiscount"/></th>
                         </tr>
                         <c:forEach var="commandLine" items="${products}">
                             <tr class="table-row">
@@ -53,13 +53,13 @@
             <!-- Total -->
             <div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
                 <h5 class="m-text20 p-b-24 mt-2">
-                    Cart Total
+                    <spring:message code="cartTotal"/>
                 </h5>
                 <!--  -->
                 <div class="flex-w flex-sb-m p-t-26 p-b-30">
-                    <p><span class="m-text22 w-size19 w-full-sm">Products Total:</span> <span class="m-text21 w-size20 w-full-sm">${cart.getFormatedWithoutDiscountTotal()}€</span></p>
-                    <p><span class="m-text22 w-size19 w-full-sm">Sold Total:</span> <span class="m-text21 w-size20 w-full-sm">${cart.getFormatedTotalDiscount()}€</span></p>
-                    <p><span class="m-text22 w-size19 w-full-sm">Total:</span> <span class="m-text21 w-size20 w-full-sm">${cart.getFormatedWithDiscountTotal()}€</span></p>
+                    <p><span class="m-text22 w-size19 w-full-sm"><spring:message code="totalPrice"/>:</span> <span class="m-text21 w-size20 w-full-sm">${cart.getFormatedWithoutDiscountTotal()}€</span></p>
+                    <p><span class="m-text22 w-size19 w-full-sm"><spring:message code="totalSold"/>:</span> <span class="m-text21 w-size20 w-full-sm">${cart.getFormatedTotalDiscount()}€</span></p>
+                    <p><span class="m-text22 w-size19 w-full-sm"><spring:message code="total"/>:</span> <span class="m-text21 w-size20 w-full-sm">${cart.getFormatedWithDiscountTotal()}€</span></p>
                 </div>
 
                 <div class="size15 trans-0-4">

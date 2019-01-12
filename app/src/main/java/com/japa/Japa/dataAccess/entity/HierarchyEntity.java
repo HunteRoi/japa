@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class HierarchyEntity {
     @Id
     @Column
-    private int hierarchy_id;
+    private Integer hierarchy_id;
     @JoinColumn(name = "main_category_id", referencedColumnName = "category_id")
     @ManyToOne
     private CategoryEntity main_category;
@@ -17,11 +17,11 @@ public class HierarchyEntity {
 
     public HierarchyEntity(){}
 
-    public int getHierarchy_id() {
+    public Integer getHierarchy_id() {
         return hierarchy_id;
     }
 
-    public void setHierarchy_id(int hierarchy_id) {
+    public void setHierarchy_id(Integer hierarchy_id) {
         this.hierarchy_id = hierarchy_id;
     }
 

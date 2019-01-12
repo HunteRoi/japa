@@ -37,6 +37,12 @@ public class ProductDAO {
         return providerConverter.productEntityToProductModel(product, language);
     }
 
+    public ProductEntity getProductEntityById(int id){
+        List<ProductEntity> productEntities = productRepository.findAll();
+        ProductEntity product = productEntities.stream().filter(productEntity -> productEntity.getProduct_id() == id).findFirst().orElse(null);
+        return product;
+    }
+
     public List<Product> getAllProductsOfMainCategory(String mainCategory, String language){
         List<Product> products = new ArrayList<>();
         List<ProductEntity> filteredProductEntities = new ArrayList<>();

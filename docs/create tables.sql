@@ -8,11 +8,11 @@ DROP TABLE `Product_Line`;
 DROP TABLE `Product`;
 DROP TABLE `Category`;
 DROP TABLE `Order`;
-DROP TABLE `User`;*/
-
+DROP TABLE `User`;
+*/
 /*CREATE TABLES*/
 CREATE TABLE `User` (
-	`user_id` INT(5) UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	`id` INT(5) UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	`username` VARCHAR(50) NOT NULL UNIQUE,
     `password` VARCHAR(200) NOT NULL,
     `first_name` VARCHAR(50) NOT NULL,
@@ -28,11 +28,11 @@ CREATE TABLE `User` (
     `ENABLED` TINYINT(1) DEFAULT NULL
 ) ENGINE = InnoDB, DEFAULT CHARSET = utf8;
 
-CREATE TABLE `Order` (
+CREATE TABLE `User_order` (
 	`order_id` INT(5) UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    `order_date` DATE NOT NULL CHECK (`date` >= STR_TO_DATE('01/01/1970', '%d/%m/%Y')),
-    `purchase_date` DATE CHECK (`date` >= STR_TO_DATE('01/01/1970', '%d/%m/%Y')),
-    `user_id` INT(5) UNSIGNED NOT NULL REFERENCES `User` (`user_id`)
+    `order_date` DATE NOT NULL CHECK (`order_date` >= STR_TO_DATE('01/01/1970', '%d/%m/%Y')),
+    `purchase_date` DATE CHECK (`purchase_date` >= STR_TO_DATE('01/01/1970', '%d/%m/%Y')),
+    `user_id` INT(5) UNSIGNED NOT NULL REFERENCES `User` (`id`)
 ) ENGINE = InnoDB, DEFAULT CHARSET = utf8;
 
 CREATE TABLE `Category` (
@@ -53,7 +53,7 @@ CREATE TABLE `Product_line` (
     `quantity` INT(3) UNSIGNED NOT NULL,
     `order_product_price` NUMERIC(8,3) NOT NULL,
     `line_number` INT(3) UNSIGNED NOT NULL,
-    `order_id` INT(5) UNSIGNED NOT NULL REFERENCES `Order` (`order_id`),
+    `order_id` INT(5) UNSIGNED NOT NULL REFERENCES `User_order` (`order_id`),
     `product_id` INT(5) UNSIGNED NOT NULL REFERENCES `Produt` (`product_id`)
 ) ENGINE = InnoDB, DEFAULT CHARSET = utf8;
 
@@ -178,6 +178,29 @@ INSERT INTO `Product_Translation` (`product_id`,`language_id`,`name`,`descriptio
 INSERT INTO `Promotion` (`label`, `pourcent`, `start_date`, `end_date`) VALUES
 ('Winter discount', 30.00, STR_TO_DATE('01/01/2019','%d/%m/%Y'), STR_TO_DATE('31/01/19','%d/%m/%Y')),
 ('70%-Night!', 70.00, STR_TO_DATE('01/02/2019','%d/%m/%Y'), STR_TO_DATE('02/02/2019','%d/%m/%Y'));
+
+INSERT INTO `Promo`(`product_id`,`promotion_id`) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(1, 2),
+(2, 2),
+(3, 2),
+(4, 2),
+(5, 2),
+(6, 2),
+(7, 2),
+(8, 2),
+(9, 2),
+(10,2);
+
 
 
 /*

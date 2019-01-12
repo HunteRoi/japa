@@ -10,17 +10,17 @@ import javax.persistence.Table;
 public class LanguageEntity {
     @Id
     @Column
-    private int language_id;
+    private Integer language_id;
     @Column
     private String name;
 
     public LanguageEntity(){}
 
-    public int getLanguage_id() {
+    public Integer getLanguage_id() {
         return language_id;
     }
 
-    public void setLanguage_id(int language_id) {
+    public void setLanguage_id(Integer language_id) {
         this.language_id = language_id;
     }
 

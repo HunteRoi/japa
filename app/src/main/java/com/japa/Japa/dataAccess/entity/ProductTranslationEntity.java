@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class ProductTranslationEntity {
     @Id
     @Column
-    private int product_translation_id;
+    private Integer product_translation_id;
     @Column
     private String name;
     @Column
@@ -21,11 +21,11 @@ public class ProductTranslationEntity {
 
     public ProductTranslationEntity(){}
 
-    public int getProduct_translation_id() {
+    public Integer getProduct_translation_id() {
         return product_translation_id;
     }
 
-    public void setProduct_translation_id(int product_translation_id) {
+    public void setProduct_translation_id(Integer product_translation_id) {
         this.product_translation_id = product_translation_id;
     }
 

@@ -8,9 +8,9 @@ import java.util.Collection;
 public class ProductEntity {
     @Id
     @Column
-    private int product_id;
+    private Integer product_id;
     @Column
-    private double product_price;
+    private Double product_price;
     @Column
     private String image_url;
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
@@ -21,19 +21,19 @@ public class ProductEntity {
 
     public ProductEntity(){}
 
-    public int getProduct_id() {
+    public Integer getProduct_id() {
         return product_id;
     }
 
-    public void setProduct_id(int product_id) {
+    public void setProduct_id(Integer product_id) {
         this.product_id = product_id;
     }
 
-    public double getProduct_price() {
+    public Double getProduct_price() {
         return product_price;
     }
 
-    public void setProduct_price(double product_price) {
+    public void setProduct_price(Double product_price) {
         this.product_price = product_price;
     }
 

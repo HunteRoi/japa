@@ -4,10 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -19,8 +16,8 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 @Table(name="User")
 public class UserEntity implements UserDetails{
     @Id
-    @Column
-    private int user_id;
+    @Column (name="ID")
+    private Integer id;
     @Column (name = "USERNAME")
     private String username;
     @Column (name = "PASSWORD")
@@ -28,13 +25,13 @@ public class UserEntity implements UserDetails{
     @Column (name = "AUTHORITIES")
     private String authorities;
     @Column (name = "NON_EXPIRED")
-    private boolean non_expired;
+    private Boolean non_expired;
     @Column (name = "NON_LOCKED")
-    private boolean non_locked;
+    private Boolean non_locked;
     @Column (name = "CREDENTIALS_NON_EXPIRED")
-    private boolean credentials_non_expired;
+    private Boolean credentials_non_expired;
     @Column (name = "ENABLED")
-    private boolean enabled;
+    private Boolean enabled;
     @Column
     private String first_name;
     @Column
@@ -47,16 +44,18 @@ public class UserEntity implements UserDetails{
     private Date birthdate;
     @Column
     private String address;
+    @OneToMany(mappedBy = "user_id")
+    private Collection<OrderEntity> orders;
 
     public UserEntity() {
     }
 
-    public int getUser_id() {
-        return user_id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Boolean getIs_male() {
@@ -138,13 +137,10 @@ public class UserEntity implements UserDetails{
         this.email = email;
     }
 
-    public boolean isIs_male() {
+    public Boolean isIs_male() {
         return is_male;
     }
 
-    public void setIs_male(boolean is_male) {
-        this.is_male = is_male;
-    }
 
     public Date getBirthdate() {
         return birthdate;
@@ -168,27 +164,27 @@ public class UserEntity implements UserDetails{
         this.authorities = authorities;
     }
 
-    public boolean isNon_expired() {
+    public Boolean isNon_expired() {
         return non_expired;
     }
 
-    public void setNon_expired(boolean non_expired) {
+    public void setNon_expired(Boolean non_expired) {
         this.non_expired = non_expired;
     }
 
-    public boolean isNon_locked() {
+    public Boolean isNon_locked() {
         return non_locked;
     }
 
-    public void setNon_locked(boolean non_locked) {
+    public void setNon_locked(Boolean non_locked) {
         this.non_locked = non_locked;
     }
 
-    public boolean isCredentials_non_expired() {
+    public Boolean isCredentials_non_expired() {
         return credentials_non_expired;
     }
 
-    public void setCredentials_non_expired(boolean credentials_non_expired) {
+    public void setCredentials_non_expired(Boolean credentials_non_expired) {
         this.credentials_non_expired = credentials_non_expired;
     }
 
@@ -196,7 +192,15 @@ public class UserEntity implements UserDetails{
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Collection<OrderEntity> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Collection<OrderEntity> orders) {
+        this.orders = orders;
     }
 }

@@ -3,6 +3,7 @@ package com.japa.Japa.model;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.util.Collection;
 import java.util.Locale;
 
 public class Product {
@@ -12,6 +13,7 @@ public class Product {
     private String description;
     private int id;
     private Category category;
+
 
     public Product(){}
 
@@ -68,4 +70,5 @@ public class Product {
     public void setId(int id) {
         this.id = id;
     }
+
 }

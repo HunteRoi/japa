@@ -9,7 +9,7 @@ import java.util.Collection;
 public class CategoryEntity {
     @Id
     @Column
-    private int category_id;
+    private Integer category_id;
     @Column
     private String name;
     @Column
@@ -17,11 +17,11 @@ public class CategoryEntity {
 
     public CategoryEntity(){}
 
-    public int getCategory_id() {
+    public Integer getCategory_id() {
         return category_id;
     }
 
-    public void setCategory_id(int category_id) {
+    public void setCategory_id(Integer category_id) {
         this.category_id = category_id;
     }
 

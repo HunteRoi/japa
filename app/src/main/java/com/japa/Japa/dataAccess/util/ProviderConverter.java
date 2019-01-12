@@ -1,12 +1,13 @@
 package com.japa.Japa.dataAccess.util;
 
+import com.japa.Japa.dataAccess.dao.ProductDAO;
 import com.japa.Japa.dataAccess.entity.*;
-import com.japa.Japa.model.Category;
-import com.japa.Japa.model.Product;
-import com.japa.Japa.model.Promo;
-import com.japa.Japa.model.Promotion;
+import com.japa.Japa.model.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -16,6 +17,7 @@ public class ProviderConverter {
     public Category categoryEntityToCategoryModel(CategoryEntity categoryEntity){
         Category category = new Category();
         category.setName(categoryEntity.getName());
+        category.setId(categoryEntity.getCategory_id());
         category.setHasNoChildren(categoryEntity.getHas_no_children());
         return category;
     }
@@ -37,6 +39,17 @@ public class ProviderConverter {
         return  product;
     }
 
+    public OrderEntity orderModelToOrderEntity(Order order){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserEntity current_user = (UserEntity) authentication.getPrincipal();
+
+        OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setOrder_date(dateUtilToDateSql(order.getOrderDate()));
+        orderEntity.setPurchase_date(order.getPurchaseDate() == null? null : dateUtilToDateSql(order.getPurchaseDate()));
+        orderEntity.setUser_id(current_user);
+        return orderEntity;
+    }
+
     public Promo promoEntityToPromoModel(PromoEntity promoEntity, String language){
         Promo promo = new Promo();
         promo.setPromotion(promotionEntityToPromotionModel(promoEntity.getPromotion()));
@@ -47,15 +60,27 @@ public class ProviderConverter {
     public Promotion promotionEntityToPromotionModel(PromotionEntity promotionEntity){
         Promotion promotion = new Promotion();
         promotion.setPourcent(promotionEntity.getPourcent());
-        promotion.setStartDate(dataSqlToDateUtil(promotionEntity.getStart_date()));
-        promotion.setEndDate(dataSqlToDateUtil(promotionEntity.getEnd_date()));
+        promotion.setStartDate(dateSqlToDateUtil(promotionEntity.getStart_date()));
+        promotion.setEndDate(dateSqlToDateUtil(promotionEntity.getEnd_date()));
         promotion.setPromotion_id(promotionEntity.getPromotion_id());
         return promotion;
     }
 
-    public Date dataSqlToDateUtil(java.sql.Date date){
+    public ProductLineEntity productLineModelToProductLineEntity(CommandLine commandLine, int line, OrderEntity orderEntity, ProductEntity productEntity){
+        ProductLineEntity productLineEntity = new ProductLineEntity();
+        productLineEntity.setQuantity(commandLine.getQuantity());
+        productLineEntity.setOrder_product_price(commandLine.getPriceWithDiscount());
+        productLineEntity.setLine_number(line);
+        productLineEntity.setOrder(orderEntity);
+        productLineEntity.setProduct(productEntity);
+        return productLineEntity;
+    }
+
+    public Date dateSqlToDateUtil(java.sql.Date date){
         return new Date(date.getTime());
     }
 
-
+    public java.sql.Date dateUtilToDateSql(Date date){
+        return new java.sql.Date(date.getTime());
+    }
 }

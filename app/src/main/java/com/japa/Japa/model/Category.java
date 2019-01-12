@@ -5,6 +5,7 @@ import java.util.Collection;
 
 public class Category {
 
+    private Integer id;
     private String name;
     private Boolean hasNoChildren;
     private ArrayList<Category> subCategories;
@@ -46,4 +47,11 @@ public class Category {
         this.hasNoChildren = hasNoChildren;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

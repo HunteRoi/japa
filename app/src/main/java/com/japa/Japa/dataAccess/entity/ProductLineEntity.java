@@ -7,13 +7,14 @@ import javax.persistence.*;
 public class ProductLineEntity {
     @Id
     @Column
-    private int product_line_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer product_line_id;
     @Column
-    private int quantity;
+    private Integer quantity;
     @Column
-    private double order_produc_price;
+    private Double order_product_price;
     @Column
-    private int line_number;
+    private Integer line_number;
     @JoinColumn(name = "order_id", referencedColumnName = "order_id")
     @ManyToOne
     private OrderEntity order;
@@ -23,35 +24,35 @@ public class ProductLineEntity {
 
     public ProductLineEntity(){}
 
-    public int getProduct_line_id() {
+    public Integer getProduct_line_id() {
         return product_line_id;
     }
 
-    public void setProduct_line_id(int product_line_id) {
+    public void setProduct_line_id(Integer product_line_id) {
         this.product_line_id = product_line_id;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public double getOrder_produc_price() {
-        return order_produc_price;
+    public Double getOrder_product_price() {
+        return order_product_price;
     }
 
-    public void setOrder_produc_price(double order_produc_price) {
-        this.order_produc_price = order_produc_price;
+    public void setOrder_product_price(Double order_product_price) {
+        this.order_product_price = order_product_price;
     }
 
-    public int getLine_number() {
+    public Integer getLine_number() {
         return line_number;
     }
 
-    public void setLine_number(int line_number) {
+    public void setLine_number(Integer line_number) {
         this.line_number = line_number;
     }
 

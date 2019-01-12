@@ -1,47 +1,60 @@
 package com.japa.Japa.dataAccess.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.lang.Nullable;
+
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "OrderEntity")
+@Table(name = "User_order")
 public class OrderEntity {
     @Id
-    @Column
-    private int order_id;
-    @Column
-    private Date date;
-    @Column
-    private int user_id;
+    @Column(name = "order_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer order_id;
 
-    public OrderEntity(){
+    @Column(name = "order_date")
+    private Date order_date;
 
-    }
+    @Column(name = "purchase_date")
+    @Nullable
+    private Date purchase_date;
 
-    public int getOrder_id() {
+    @ManyToOne
+    @JoinColumn(name="user_id", referencedColumnName = "id")
+    private UserEntity user_id;
+
+    public OrderEntity(){}
+
+    public Integer getOrder_id() {
         return order_id;
     }
 
-    public void setOrder_id(int order_id) {
+    public void setOrder_id(Integer order_id) {
         this.order_id = order_id;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getOrder_date() {
+        return order_date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setOrder_date(Date order_date) {
+        this.order_date = order_date;
     }
 
-    public int getUser_id() {
+    public Date getPurchase_date() {
+        return purchase_date;
+    }
+
+    public void setPurchase_date(Date purchase_date) {
+        this.purchase_date = purchase_date;
+    }
+
+    public UserEntity getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(UserEntity user_id) {
         this.user_id = user_id;
     }
 }

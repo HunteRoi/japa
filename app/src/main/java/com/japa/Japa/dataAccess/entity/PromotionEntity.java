@@ -11,11 +11,11 @@ import java.sql.Date;
 public class PromotionEntity {
     @Id
     @Column
-    private int promotion_id;
+    private Integer promotion_id;
     @Column
     private String label;
     @Column
-    private double pourcent;
+    private Double pourcent;
     @Column
     private Date start_date;
     @Column
@@ -23,11 +23,11 @@ public class PromotionEntity {
 
     public PromotionEntity(){}
 
-    public int getPromotion_id() {
+    public Integer getPromotion_id() {
         return promotion_id;
     }
 
-    public void setPromotion_id(int promotion_id) {
+    public void setPromotion_id(Integer promotion_id) {
         this.promotion_id = promotion_id;
     }
 
@@ -39,11 +39,11 @@ public class PromotionEntity {
         this.label = label;
     }
 
-    public double getPourcent() {
+    public Double getPourcent() {
         return pourcent;
     }
 
-    public void setPourcent(double pourcent) {
+    public void setPourcent(Double pourcent) {
         this.pourcent = pourcent;
     }
 
