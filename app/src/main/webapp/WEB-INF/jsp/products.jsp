@@ -14,11 +14,6 @@
                                 </h4>
                                 <h5>${product.getFormatedProductPrice()}€</h5>
                                 <p class="card-text">${product.getShortDescription()}</p>
-                                <form action="/webshop/cart/addProduct/${product.getId()}" method="post">
-                                    <button>
-                                        <i class="fas fa-shopping-cart"></i>
-                                    </button>
-                                </form>
                             </div>
                         </div>
                     </div>

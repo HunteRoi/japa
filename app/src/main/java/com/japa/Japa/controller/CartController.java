@@ -70,7 +70,7 @@ public class CartController extends MainController{
     public String validate (Model model, @ModelAttribute(value="shoppingCart") Cart shoppingCart) {
         model.addAttribute("categories", this.categoryDAO.getCategories());
         model.addAttribute("cart", shoppingCart);
-        Order order = new Order(new Date(), null, null);
+        Order order = new Order(new Date(), new Date(), null);
         OrderEntity orderEntity = orderDAO.saveOrder(order);
         int ligne = 1;
         for(CommandLine commandLine : shoppingCart.getCart().values()){
@@ -81,7 +81,7 @@ public class CartController extends MainController{
     }
 
     @RequestMapping(value="/bought", method = RequestMethod.GET)
-    public String homeRedirectFromPaypal (@ModelAttribute(value = "shoppingCart") Cart shoppingCart) {
+    public String homeRedirectFromPaypal (@ModelAttribute(value="shoppingCart") Cart shoppingCart) {
         shoppingCart.reset();
         return "redirect:/home";
     }
