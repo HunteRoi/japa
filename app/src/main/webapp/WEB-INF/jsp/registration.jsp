@@ -63,7 +63,7 @@
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <form:input  path="favoriteMangaCategory" name="favoriteMangaCategory" class="form-control"  type="password"/>
+                            <form:input  path="favoriteMangaCategory" name="favoriteMangaCategory" class="form-control"  type="text"/>
                         </div>
                     </div>
                 </div>
