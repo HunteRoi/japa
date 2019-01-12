@@ -41,12 +41,16 @@ public class RegistrationController extends MainController{
         if(!newUser.getPassword().equals(newUser.getCheckPassword())){
             errors.addError(new ObjectError("checkPassword", "Passwords dont match"));
         }
+
         if(errors.hasErrors()){
-            System.out.println("ERRORS HERE MA BOI");
             errors.getFieldErrors().stream().forEach(f->System.out.println(f.getField() + " - " + f.getDefaultMessage()));
+            //recommence lol
             return "integrated:registration";
         }
-        return "";
+
+        // add user to DB
+
+        return "redirect:/home";
     }
 
 

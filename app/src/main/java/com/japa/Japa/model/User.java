@@ -11,34 +11,43 @@ import java.util.Date;
 public class User {
     @NotNull
     @NotEmpty
-    @Size(min = 3, max = 50, message = "")
+    @Size(min = 3, max = 50)
     private String username;
+
     @NotNull
     @NotEmpty
     @Size(min = 3, max = 20)
     private String password;
+
     @NotNull
     @NotEmpty
     @Size(min = 3, max = 20)
     private String checkPassword;
+
     @NotNull
     @NotEmpty
     private String firstName;
+
     @NotNull
     @NotEmpty
     private String lastName;
+
     @NotNull
     @NotEmpty
     @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
     private String email;
+
     @NotNull
     private boolean isMale;
+
     @NotNull
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date birthdate;
+
     @NotNull
     @NotEmpty
     private String address;
+
 
     public User(){}
 
