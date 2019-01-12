@@ -267,3 +267,11 @@ html, body {
 .error{
     color:red;
 }
+
+.required{
+    color:red;
+}
+
+.legend{
+    font-size:10px;
+}

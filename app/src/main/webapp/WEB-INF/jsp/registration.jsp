@@ -9,6 +9,7 @@
 
             <!-- Form Name -->
             <legend><spring:message code="signup"/></legend>
+            <p class="required legend">* : <spring:message code="legend"/></p>
 
             <!-- Text input-->
 
@@ -19,7 +20,7 @@
                     modelAttribute="newUser">
 
                     <div class="form-group">
-                        <form:label path="username" class="col-md-4 control-label"><spring:message code="username"/></form:label>
+                        <form:label path="username" class="col-md-4 control-label"><spring:message code="username"/><span class="required">*</span></form:label>
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -32,7 +33,7 @@
                     </div>
 
                     <div class="form-group">
-                        <form:label path="password" class="col-md-4 control-label"><spring:message code="password"/></form:label>
+                        <form:label path="password" class="col-md-4 control-label"><spring:message code="password"/><span class="required">*</span></form:label>
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -45,7 +46,7 @@
                     </div>
 
                 <div class="form-group">
-                    <form:label path="password" class="col-md-4 control-label"><spring:message code="passwordValidation"/></form:label>
+                    <form:label path="checkPassword" class="col-md-4 control-label"><spring:message code="passwordValidation"/><span class="required">*</span></form:label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -57,8 +58,18 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <form:label path="favoriteMangaCategory" class="col-md-4 control-label"><spring:message code="favoriteMangaCategory"/></form:label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <form:input  path="favoriteMangaCategory" name="favoriteMangaCategory" class="form-control"  type="password"/>
+                        </div>
+                    </div>
+                </div>
+
                     <div class="form-group">
-                        <form:label path="firstName" class="col-md-4 control-label"><spring:message code="firstName"/></form:label>
+                        <form:label path="firstName" class="col-md-4 control-label"><spring:message code="firstName"/><span class="required">*</span></form:label>
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -70,55 +81,46 @@
                         </div>
                     </div>
 
+                <div class="form-group">
+                    <form:label path="lastName" class="col-md-4 control-label"><spring:message code="lastName"/><span class="required">*</span></form:label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <form:input  path="lastName" name="lastName" class="form-control"  type="text"/>
+                        </div>
+                        <p class="error">
+                            <form:errors path="lastName"/>
+                        </p>
+                    </div>
+                </div>
+
                     <!-- Text input-->
 
+
+
                     <div class="form-group">
-                        <form:label path="lastName" class="col-md-4 control-label" ><spring:message code="lastName"/></form:label>
+                        <form:label path="phoneNumber" class="col-md-4 control-label" ><spring:message code="phoneNumber"/><span class="required">*</span></form:label>
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <form:input path="lastName" name="last_name"  class="form-control"  type="text"/>
+                                <spring:message var="phonePattern" code="phonePattern"/>
+                                <form:input path="phoneNumber" name="phoneNumber"  class="form-control"  type="text" placeholder="${phonePattern}"/>
                             </div>
                             <p class="error">
-                                <form:errors path="lastName"/>
+                                <form:errors path="phoneNumber"/>
                             </p>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <form:label path="birthdate" class="col-md-4 control-label"><spring:message code="birthdate"/></form:label>
-                        <div class="col-md-4 inputGroupContainer">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" ></i></span>
-                                <spring:message code="datePattern" var="datePattern"/>
-                                <form:input path="birthdate" name="birthdate"  class="form-control"  placeholder='${datePattern}' type="text"/>
-                            </div>
-                            <p class="error">
-                                <form:errors path="birthdate"/>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <form:label path="isMale" class="col-md-4 control-label"><spring:message code="sex"/></form:label>
-                        <div class="col-md-4 inputGroupContainer">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                <spring:message code="male" var="male"/>
-                                <form:radiobutton path="isMale" value="true" label=" ${male}"/>
-                                <spring:message code="female" var="female"/>
-                                <form:radiobutton path="isMale" value="false" cssStyle="margin-left: 10px;" label=" ${female}"/>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <form:label path="email" class="col-md-4 control-label">E-mail</form:label>
+                        <form:label path="email" class="col-md-4 control-label">E-mail<span class="required">*</span></form:label>
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                <form:input path="email" name="email"  class="form-control"  type="email"/>
+                                <spring:message var="emailPattern" code="emailPattern"/>
+                                <form:input path="email" name="email"  class="form-control"  type="text" placeholder="${emailPattern}"/>
                             </div>
                             <p class="error">
                                 <form:errors path="email"/>
@@ -129,14 +131,14 @@
                     <!-- Text input-->
 
                     <div class="form-group">
-                        <form:label path="address" class="col-md-4 control-label"><spring:message code="address"/></form:label>
+                        <form:label path="address" class="col-md-4 control-label"><spring:message code="address"/><span class="required">*</span></form:label>
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                                 <form:input path="address" name="address"  class="form-control" type="text"/>
                             </div>
                             <p class="error">
-                                <form:errors path="username"/>
+                                <form:errors path="address"/>
                             </p>
                         </div>
                     </div>

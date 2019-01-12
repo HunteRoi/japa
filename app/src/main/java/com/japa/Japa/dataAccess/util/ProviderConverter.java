@@ -76,6 +76,23 @@ public class ProviderConverter {
         return productLineEntity;
     }
 
+    public UserEntity userModelToUserEntity(User user){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUsername(user.getUsername());
+        userEntity.setPassword(Encryption.encrypt(user.getPassword()));
+        userEntity.setFirst_name(user.getFirstName());
+        userEntity.setLast_name(user.getLastName());
+        userEntity.setEmail(user.getEmail());
+        userEntity.setPhone_number(user.getPhoneNumber());
+        userEntity.setAddress(user.getAddress());
+        userEntity.setAuthorities("ROLE_USER");
+        userEntity.setNon_expired(true);
+        userEntity.setNon_locked(true);
+        userEntity.setCredentials_non_expired(true);
+        userEntity.setEnabled(true);
+        return userEntity;
+    }
+
     public Date dateSqlToDateUtil(java.sql.Date date){
         return new Date(date.getTime());
     }

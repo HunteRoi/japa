@@ -1,8 +1,11 @@
 package com.japa.Japa.configuration;
 
 
+import com.japa.Japa.controller.validator.UserValidator;
+import com.japa.Japa.dataAccess.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.validation.Validator;
 
 @Configuration
 @EnableWebSecurity
@@ -51,5 +55,13 @@ public class WebSecurityConfiguration  extends WebSecurityConfigurerAdapter{
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+    }
+
+    @Bean
+    @Autowired
+    public Validator userValidator(UserDAO userDAO)
+    {
+        Validator bean = new UserValidator(userDAO);
+        return bean;
     }
 }

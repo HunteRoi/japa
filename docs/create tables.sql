@@ -7,7 +7,7 @@ DROP TABLE `Hierarchy`;
 DROP TABLE `Product_Line`;
 DROP TABLE `Product`;
 DROP TABLE `Category`;
-DROP TABLE `Order`;
+DROP TABLE `User_order`;
 DROP TABLE `User`;*/
 
 /*CREATE TABLES*/
@@ -18,8 +18,8 @@ CREATE TABLE `User` (
     `first_name` VARCHAR(50) NOT NULL,
     `last_name` VARCHAR(50) NOT NULL,
     `email` VARCHAR(100) NOT NULL UNIQUE CHECK (`email` LIKE '%@%.%'),
-    `is_male` TINYINT(1) DEFAULT NULL,
-    `birthdate` DATE NOT NULL,
+    `phone_number` VARCHAR(50) NOT NULL UNIQUE,
+    `favorite_manga_category` VARCHAR(50),
 	`address` VARCHAR(100) NOT NULL,
     `AUTHORITIES` VARCHAR(500) DEFAULT NULL,
     `NON_EXPIRED` TINYINT(1) DEFAULT NULL,
@@ -108,16 +108,16 @@ CREATE TABLE `Product_translation` (
 	mdp : root
     -> $2a$10$H4aD/r6TKjrpeKz4HN7xYeqC6Gt38.jEQtw4s.sS6VR3ZILbXYyce
  */
-INSERT INTO `User` (`USERNAME`, `PASSWORD`, `first_name`, `last_name`, `email`, `is_male`, `birthdate`, `address`, 
+INSERT INTO `User` (`USERNAME`, `PASSWORD`, `first_name`, `last_name`, `email`,`phone_number`,`favorite_manga_category`, `address`, 
 `AUTHORITIES`, `NON_EXPIRED`, `NON_LOCKED`, `CREDENTIALS_NON_EXPIRED`, `ENABLED`) 
 VALUES 
-('mdpdubfr','$2a$10$nE/U91pBn6g34B.8beU9JeOBHQC0X7SUkm/mrIpaT1VCTcRWpodym','Françoise','Dubisy','francoise.dubisy@henallux.be',false,STR_TO_DATE('01/01/1990','%d/%m/%Y'),'Rue Joseph Calozet, 19 - 5000 Namur',
+('mdpdubfr','$2a$10$nE/U91pBn6g34B.8beU9JeOBHQC0X7SUkm/mrIpaT1VCTcRWpodym','Françoise','Dubisy','francoise.dubisy@henallux.be','9876543210',null,'Rue Joseph Calozet, 19 - 5000 Namur',
  'ROLE_USER', true, true, true, true),
-('imnoot','$2a$10$nLE6PRvIY1QYBUSCaf6/qOblYppw3au.9O8v5aDBba.2cUdkfAABa','Guillaume','Servais','guillaume.servais.01@student.henallux.be',true,STR_TO_DATE('17/09/1998','%d/%m/%Y'),'Rue de Matagne, 16A - 5351 OHEY',
+('imnoot','$2a$10$nLE6PRvIY1QYBUSCaf6/qOblYppw3au.9O8v5aDBba.2cUdkfAABa','Guillaume','Servais','guillaume.servais.01@student.henallux.be','0498012996','Shonen','Rue de Matagne, 16A - 5351 OHEY',
  'ROLE_ADMIN', true, true, true, true),
-('hunteroi','$2a$10$Xg6X9Npr6xpAUMly50KqsO3tPfdWHh2t8e4CU9y4aYUv65jHL2XCK','Tinaël','Devresse','tinael.devresse.01@student.henallux.be',true,STR_TO_DATE('21/09/1999','%d/%m/%Y'),'Avenue Schlögel, 75 - 5590 Ciney',
+('hunteroi','$2a$10$Xg6X9Npr6xpAUMly50KqsO3tPfdWHh2t8e4CU9y4aYUv65jHL2XCK','Tinaël','Devresse','tinael.devresse.01@student.henallux.be','0498605271','Shonen','Avenue Schlögel, 75 - 5590 Ciney',
  'ROLE_ADMIN', true, true, true, true),
-('root','$2a$10$H4aD/r6TKjrpeKz4HN7xYeqC6Gt38.jEQtw4s.sS6VR3ZILbXYyce','Root','User','root@japa.com',null,STR_TO_DATE('01/01/2019','%d/%m/%Y'),'Some Address, CA 90810 - 3481 Some Place',
+('root','$2a$10$H4aD/r6TKjrpeKz4HN7xYeqC6Gt38.jEQtw4s.sS6VR3ZILbXYyce','Root','User','root@japa.com','0123546789',null,'Some Address, CA 90810 - 3481 Some Place',
  'ROLE_ADMIN', true, true, true, true)
 ;
 	
@@ -157,7 +157,7 @@ INSERT INTO `Product_Translation` (`product_id`,`language_id`,`name`,`descriptio
 (2,1,'L\'attaque des titans', 'La race humaine est au bord de l\'extinction suite à l\'arrivée de géants dévorants les humains. Mais heureusement, les derniers survivants réussissent à se fortifier derrière d\'immenses murs empêchant tous géants de les atteindre. Durant plusieurs années, les humains ont pu enfin vivre en paix. Mais, un beau jour, un géant réussit à faire une brèche dans l\'enceinte. Maintenant qu\'ils sont de retour, la guerre est déclarée, Eren compte bien se venger du mal qui a été fait aux habitants de la ville et décide d\'éliminer tous ces êtres nuisibles un par un.'),
 (2,2,'Attack on titans', 'The human race is on the verge of extinction following the arrival of giants devouring humans. But fortunately, the last survivors succeed in fortifying themselves behind immense walls preventing all giants from reaching them. For many years, humans have finally been able to live in peace. But, one day, a giant managed to make a breach in the enclosure. Now that they are back, the war is declared, Eren is eager to avenge the harm that has been done to the inhabitants of the city and decides to eliminate all these harmful beings one by one.'),
 (3,1,'Orange','Un matin, alors qu\'elle se rend au lycée, Naho reçoit une drôle de lettre… une lettre du futur ! La jeune femme qu\'elle est devenue dix ans plus tard, rongée par de nombreux remords, souhaite aider celle qu\'elle était autrefois à ne pas faire les mêmes erreurs qu\'elle. Aussi, elle a décrit, dans un long courrier, les événements qui vont se dérouler dans la vie de Naho lors des prochains mois, lui indiquant même comment elle doit se comporter. Mais Naho, a bien du mal à y croire, à cette histoire… Et de toute façon, elle manque bien trop d\'assurance en elle pour suivre certaines directives indiquées dans ce curieux courrier. Pour le moment, la seule chose dont elle est sûre, c\'est que Kakeru, le nouvel élève de la classe, ne la laisse pas indifférent…'),
-(3,2,'Orange','One morning, while she goes to high school, Naho receives a funnyproduct_translationproduct_translationpromotionpromo letter ... a letter of the future! The young woman she became ten years later, devoured by many remorse, wants to help the one she was formerly not to make the same mistakes she. She also described in a long letter the events that will take place in Naho\'s life in the coming months, even telling her how she should behave. But Naho, has a hard time believing it, this story ... And anyway, it is far too much insurance in it to follow certain guidelines indicated in this curious mail. For the moment, the only thing she is sure of is that Kakeru, the new student of the class, does not leave her indifferent ...'),
+(3,2,'Orange','One morning, while she goes to high school, Naho receives a funny letter ... a letter of the future! The young woman she became ten years later, devoured by many remorse, wants to help the one she was formerly not to make the same mistakes she. She also described in a long letter the events that will take place in Naho\'s life in the coming months, even telling her how she should behave. But Naho, has a hard time believing it, this story ... And anyway, it is far too much insurance in it to follow certain guidelines indicated in this curious mail. For the moment, the only thing she is sure of is that Kakeru, the new student of the class, does not leave her indifferent ...'),
 (4,1,'Ao Haru Ride', 'Alors que Futaba Yoshioka fait son entrée au lycée, elle ne garde pas de bons souvenirs du collège, où le garçon dont elle était amoureuse, Kô Tanaka, partit sans qu\'elle ait pu lui avouer ses sentiments. La chance tourne puisqu\'elle le retrouve par hasard au lycée. Cependant, il ne porte pas le même nom et sa personnalité a quelque peu changé. Avec ses nouveaux amis, elle va apprendre à l\'apprivoiser et à se rapprocher de lui, mais aussi à le connaître et à trouver de nouveau confiance en elle.'),
 (4,2, 'Blue Spring Ride', 'While Futaba Yoshioka enters high school, she does not have fond memories of college, where the boy she was in love with, Ko Tanaka, left without her having to confess his feelings. Luck turns because she finds it by chance in high school. However, he does not have the same name and his personality has changed somewhat. With her new friends, she will learn to tame him and get closer to him, but also to know him and to find new confidence in her.'),
 -- Insertion des animes
@@ -180,7 +180,6 @@ INSERT INTO `Promotion` (`label`, `pourcent`, `start_date`, `end_date`) VALUES
 ('70%-Night!', 70.00, STR_TO_DATE('01/02/2019','%d/%m/%Y'), STR_TO_DATE('02/02/2019','%d/%m/%Y'));
 
 INSERT INTO `Promo`(`product_id`,`promotion_id`) VALUES
-(1, 1),
 (2, 1),
 (3, 1),
 (4, 1),

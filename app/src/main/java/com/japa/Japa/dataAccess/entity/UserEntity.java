@@ -1,5 +1,6 @@
 package com.japa.Japa.dataAccess.entity;
 
+import org.springframework.lang.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
@@ -17,35 +17,51 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 public class UserEntity implements UserDetails{
     @Id
     @Column (name="ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column (name = "USERNAME")
     private String username;
+
     @Column (name = "PASSWORD")
     private String password;
+
     @Column (name = "AUTHORITIES")
     private String authorities;
+
     @Column (name = "NON_EXPIRED")
     private Boolean non_expired;
+
     @Column (name = "NON_LOCKED")
     private Boolean non_locked;
+
     @Column (name = "CREDENTIALS_NON_EXPIRED")
     private Boolean credentials_non_expired;
+
     @Column (name = "ENABLED")
     private Boolean enabled;
+
     @Column
     private String first_name;
+
     @Column
     private String last_name;
+
     @Column
     private String email;
+
     @Column
-    private Boolean is_male;
+    private String phone_number;
+
     @Column
-    private Date birthdate;
+    @Nullable
+    private String favorite_manga_category;
+
     @Column
     private String address;
-    @OneToMany(mappedBy = "user_id")
-    private Collection<OrderEntity> orders;
+
+    /*@OneToMany(mappedBy = "user_id")
+    private Collection<OrderEntity> orders;*/
 
     public UserEntity() {
     }
@@ -56,14 +72,6 @@ public class UserEntity implements UserDetails{
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Boolean getIs_male() {
-        return is_male;
-    }
-
-    public void setIs_male(Boolean is_male) {
-        this.is_male = is_male;
     }
 
     public String getUsername() {
@@ -137,18 +145,6 @@ public class UserEntity implements UserDetails{
         this.email = email;
     }
 
-    public Boolean isIs_male() {
-        return is_male;
-    }
-
-
-    public Date getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
-    }
 
     public String getAddress() {
         return address;
@@ -196,11 +192,28 @@ public class UserEntity implements UserDetails{
         this.enabled = enabled;
     }
 
-    public Collection<OrderEntity> getOrders() {
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public String getFavorite_manga_category() {
+        return favorite_manga_category;
+    }
+
+    public void setFavorite_manga_category(String favorite_manga_category) {
+        this.favorite_manga_category = favorite_manga_category;
+    }
+
+
+/*public Collection<OrderEntity> getOrders() {
         return orders;
     }
 
     public void setOrders(Collection<OrderEntity> orders) {
         this.orders = orders;
-    }
+    }*/
 }

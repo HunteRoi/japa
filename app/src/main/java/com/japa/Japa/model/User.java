@@ -1,27 +1,29 @@
 package com.japa.Japa.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
+
+
+import org.springframework.lang.Nullable;
+
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Date;
+
 
 public class User {
     @NotNull
     @NotEmpty
-    @Size(min = 3, max = 50)
+    @Size(min = 3)
     private String username;
 
     @NotNull
     @NotEmpty
-    @Size(min = 3, max = 20)
+    @Size(min = 6)
     private String password;
 
     @NotNull
     @NotEmpty
-    @Size(min = 3, max = 20)
+    @Size(min = 6)
     private String checkPassword;
 
     @NotNull
@@ -34,15 +36,14 @@ public class User {
 
     @NotNull
     @NotEmpty
-    @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
     private String email;
 
     @NotNull
-    private boolean isMale;
+    @NotEmpty
+    private String phoneNumber;
 
-    @NotNull
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date birthdate;
+    @Nullable
+    private String favoriteMangaCategory;
 
     @NotNull
     @NotEmpty
@@ -96,22 +97,6 @@ public class User {
         this.email = email;
     }
 
-    public Boolean getIsMale() {
-        return isMale;
-    }
-
-    public void setIsMale(Boolean male) {
-        isMale = male;
-    }
-
-    public Date getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -126,5 +111,21 @@ public class User {
 
     public void setCheckPassword(String checkPassword) {
         this.checkPassword = checkPassword;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getFavoriteMangaCategory() {
+        return favoriteMangaCategory;
+    }
+
+    public void setFavoriteMangaCategory(String favoriteMangaCategory) {
+        this.favoriteMangaCategory = favoriteMangaCategory;
     }
 }
