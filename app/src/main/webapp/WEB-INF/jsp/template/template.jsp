@@ -3,11 +3,6 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <html>
     <head>
-        <style>
-
-        </style>
-    </head>
-    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,7 +11,11 @@
         <title>${title}</title>
 
         <!-- Bootstrap Core -->
+        <script src='<spring:url value="https://code.jquery.com/jquery-3.3.1.slim.min.js"/>'></script>
+        <script src='<spring:url value="/js/bootstrap.min.js"/>'></script>
         <script src='<spring:url value="/js/anchor.min.js"/>'></script>
+        <!--<script src='<spring:url value="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js"/>'></script>-->
+        <script src='<spring:url value="/js/popper.min.js"/>'></script>
 
         <!-- Bootstrap CSS -->
         <link type="text/css" href='<spring:url value="/css/bootstrap.min.css"/>' rel="stylesheet">
@@ -39,7 +38,7 @@
                         <c:forEach var="category" items="${categories}">
                             <c:choose>
                                 <c:when test="${!category.getHasNoChildren()}">
-                                    <li class="nav-item dropdown">
+                                    <li class="nav-item dropdown clickable">
                                         <a class="big-a nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">${category.getName()}</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <c:forEach var="subCategory" items="${category.getSubCategories()}">
@@ -60,7 +59,7 @@
                         </p>
                     </sec:authorize>
                     <button type="button" onclick="location.href='<spring:url value="/cart/checkout"/>'" z-index="1" class="mr-1 btn btn-default navbar-btn">
-                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas ${cart.hasContent() ? 'fa-cart-arrow-down' : 'fa-shopping-cart'}"></i>
                     </button>
                     <div class="dropdown">
                         <button class="ml-1 mr-1 btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -79,7 +78,7 @@
                         </div>
                     </div>
                     <sec:authorize access="!isAuthenticated()">
-                        <button type="button" onclick="location.href='<spring:url value="/login"/>'" class="ml-1 btn btn-default navbar-btn"><spring:message code="signin"/></button>
+                        <button type="button" onclick="location.href='<spring:url value="/signin"/>'" class="ml-1 btn btn-default navbar-btn"><spring:message code="signin"/></button>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <button type="button" onclick="location.href='<spring:url value="/logout"/>'" class="ml-1 btn btn-default navbar-btn"><spring:message code="signout"/></button>
@@ -103,12 +102,5 @@
                 <p><i class="far fa-copyright"></i> <spring:message code="copyright"/></p>
             </div>
         </footer>
-
-        <!-- Bootstrap Core and such -->
-        <script src='<spring:url value="https://code.jquery.com/jquery-3.3.1.slim.min.js"/>'></script>
-        <script src='<spring:url value="/js/bootstrap.min.js"/>'></script>
-        <script src='<spring:url value="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js"/>'></script>
-        <script src='<spring:url value="/js/anchor.min.js"/>'></script>
-        <script src='<spring:url value="/js/popper.min.js"/>'></script>
     </body>
 </html>

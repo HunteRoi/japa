@@ -59,4 +59,6 @@ public class Cart {
     public HashMap<Integer, CommandLine> getCart(){
         return products;
     }
+
+    public boolean hasContent() { return !products.isEmpty(); }
 }

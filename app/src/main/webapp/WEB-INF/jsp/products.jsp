@@ -2,7 +2,7 @@
 <%@ include file="include/importTags.jsp" %>
 <html>
     <body>
-        <div class="container">
+        <div class="container mt-1 mb-1">
             <div class="row">
                 <c:forEach var="product" items="${products}">
                     <div class="col-lg-4 col-md-6 mb-4 ml-auto mr-auto">
@@ -12,7 +12,14 @@
                                 <h4 class="card-title">
                                     <a href='<spring:url value="/product/${product.getId()}"/>'>${product.getName()}</a>
                                 </h4>
-                                <h5>${product.getFormatedProductPrice()}€</h5>
+                                <h5><c:choose>
+                                    <c:when test="${!product.hasDiscount()}">
+                                        ${product.getFormatedRealPrice()}
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="wrongPrice">${product.getFormatedProductPrice()}</span> <span class="newPrice">${product.getFormatedRealPrice()}</span>
+                                    </c:otherwise>
+                                </c:choose>€</h5>
                                 <p class="card-text">${product.getShortDescription()}</p>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="include/importTags.jsp" %>
 <body>
-    <section class="cart bgwhite p-t-70 p-b-100">
+    <section class="cart bgwhite p-t-70 p-b-100 mt-1 mb-1">
         <div class="container">
             <!-- Cart item -->
             <div class="container-table-cart pos-relative">
@@ -10,11 +10,11 @@
                         <tr class="table-head">
                             <th class="column-1"></th>
                             <th class="column-2"><spring:message code="product"/></th>
-                            <th class="column-3"><spring:message code="unityPrice"/></th>
-                            <th class="column-4"><spring:message code="unityDiscount"/></th>
-                            <th class="column-5 p-l-70"><spring:message code="quantity"/></th>
-                            <th class="column-6"><spring:message code="totalWithoutDiscount"/></th>
-                            <th class="column-6"><spring:message code="totalWithDiscount"/></th>
+                            <th class="column-1"><spring:message code="unityPrice"/></th>
+                            <th class="column-1"><spring:message code="unityDiscount"/></th>
+                            <th class="column-1"><spring:message code="quantity"/></th>
+                            <th class="column-1"><spring:message code="totalWithoutDiscount"/></th>
+                            <th class="column-1"><spring:message code="totalWithDiscount"/></th>
                         </tr>
                         <c:forEach var="commandLine" items="${products}">
                             <tr class="table-row">
@@ -24,17 +24,16 @@
                                     </div>
                                 </td>
                                 <td class="column-2">${commandLine.getProduct().getName()}</td>
-                                <td class="column-3">${commandLine.getFormatedUnitPrice()}€</td>
-                                <td class="column-4">${commandLine.getFormatedUnitDiscountPrice()}€</td>
-                                <td class="column-5">
-                                    <div class="flex-w bo5 of-hidden w-size17">
+                                <td class="column-1">${commandLine.getFormatedUnitPrice()}€</td>
+                                <td class="column-1">${commandLine.getFormatedUnitDiscountPrice()}€</td>
+                                <td class="column-1">
+                                    <div class="inliner flex-w bo5 of-hidden w-size17">
                                         <form class="inliner" action="/webshop/cart/minus/${commandLine.getProduct().getId()}" method="post">
                                             <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
                                                 <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
                                             </button>
                                         </form>
-                                        <p class="size8 m-text18 t-center num-product">${commandLine.getQuantity()}</p>
-
+                                        <p class="inliner size8 m-text18 t-center num-product">${commandLine.getQuantity()}</p>
                                         <form class="inliner" action="/webshop/cart/plus/${commandLine.getProduct().getId()}" method="post">
                                             <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
                                                 <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
@@ -42,8 +41,8 @@
                                         </form>
                                     </div>
                                 </td>
-                                <td class="column-6">${commandLine.getFormatedPriceWithoutDiscount()}€</td>
-                                <td class="column-6">${commandLine.getFormatedPriceWithDiscount()}€</td>
+                                <td class="column-1 ml-2">${commandLine.getFormatedPriceWithoutDiscount()}€</td>
+                                <td class="column-1">${commandLine.getFormatedPriceWithDiscount()}€</td>
                             </tr>
                         </c:forEach>
                     </table>

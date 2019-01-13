@@ -10,11 +10,18 @@
                         <div class="card-body">
                             <h3 class="productNameLabel"><span>${product.getName()}</span></h3>
                             <p class="categoryLabel">${product.getCategory().getName()}</p>
-                            <h4>${product.getFormatedProductPrice()}€</h4>
+                            <h4><c:choose>
+                                <c:when test="${!product.hasDiscount()}">
+                                    ${product.getFormatedRealPrice()}
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="wrongPrice">${product.getFormatedProductPrice()}</span> <span class="newPrice">${product.getFormatedRealPrice()}</span>
+                                </c:otherwise>
+                            </c:choose>€</h4>
                             <p class="card-text">${product.getDescription()}</p>
                             <form:form action="/webshop/cart/addProduct/${product.getId()}" method="post">
-                                <button>
-                                    <i class="fas fa-shopping-cart"></i>
+                                <button class="clickable">
+                                    <i class="fas fa-cart-plus"></i>
                                 </button>
                             </form:form>
                         </div>

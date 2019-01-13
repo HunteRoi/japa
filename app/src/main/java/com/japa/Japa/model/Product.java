@@ -7,22 +7,41 @@ import java.util.Collection;
 import java.util.Locale;
 
 public class Product {
+    private double unitDiscount;
     private double productPrice;
     private String imageUrl;
     private String name;
     private String description;
     private int id;
     private Category category;
+    private DecimalFormat format;
 
 
-    public Product(){}
+    public Product() {
+        format = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+        this.unitDiscount = 0.0;
+    }
+
+    public boolean hasDiscount() {
+        return unitDiscount > 0;
+    }
+
+    public String getFormatedRealPrice() { return format.format(productPrice - unitDiscount); }
+
+    public double getUnitDiscount() {
+        return unitDiscount;
+    }
+
+    public void setUnitDiscount(double unitDiscount) {
+        this.unitDiscount = unitDiscount;
+    }
 
     public double getProductPrice() {
         return productPrice;
     }
 
     public String getFormatedProductPrice() {
-        return new DecimalFormat("0.00", DecimalFormatSymbols.getInstance(Locale.ENGLISH)).format(productPrice);
+        return format.format(productPrice);
     }
 
     public void setProductPrice(double productPrice) {

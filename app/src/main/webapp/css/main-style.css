@@ -9,8 +9,24 @@ html, body {
     transform: translate(-50%, -50%);
 }
 
+.wrongPrice {
+    text-decoration: line-through;
+}
+
+.newPrice {
+    color: #E1304C;
+}
+
 .big-a {
     font-size: larger;
+}
+
+.donttouch {
+    cursor: default;
+}
+
+.clickable {
+    cursor: pointer;
 }
 
 .business-header {

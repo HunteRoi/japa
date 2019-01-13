@@ -5,12 +5,14 @@ import com.japa.Japa.model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+@SessionAttributes(Constants.CART)
 public class MainController {
     protected CategoryDAO categoryDAO;
     protected final MessageSource messageSource;
 
-    @ModelAttribute(value = "shoppingCart")
+    @ModelAttribute(value = Constants.CART)
     public Cart getCart(){
         return new Cart();
     }
