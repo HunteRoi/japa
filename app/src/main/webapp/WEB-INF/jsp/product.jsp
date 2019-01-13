@@ -8,7 +8,7 @@
                     <div class="productCard">
                         <img class="imgProduct" src="${product.getImageUrl()}?height=800px&width=100px" alt="">
                         <div class="card-body">
-                            <h3 class="productNameLabel"><span>${product.getName()}</span></h3>
+                            <h3 class="productNameLabel"><span>${product.getNameByLanguage(languageCode)}</span></h3>
                             <p class="categoryLabel">${product.getCategory().getName()}</p>
                             <h4><c:choose>
                                 <c:when test="${!product.hasDiscount()}">
@@ -18,7 +18,7 @@
                                     <span class="wrongPrice">${product.getFormatedProductPrice()}</span> <span class="newPrice">${product.getFormatedRealPrice()}</span>
                                 </c:otherwise>
                             </c:choose>€</h4>
-                            <p class="card-text">${product.getDescription()}</p>
+                            <p class="card-text">${product.getDescriptionByLanguage(languageCode)}</p>
                             <form:form action="/webshop/cart/addProduct/${product.getId()}" method="post">
                                 <button class="clickable">
                                     <i class="fas fa-cart-plus"></i>

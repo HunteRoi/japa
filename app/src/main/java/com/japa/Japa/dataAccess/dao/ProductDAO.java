@@ -3,6 +3,7 @@ package com.japa.Japa.dataAccess.dao;
 import com.japa.Japa.dataAccess.entity.CategoryEntity;
 import com.japa.Japa.dataAccess.entity.HierarchyEntity;
 import com.japa.Japa.dataAccess.entity.ProductEntity;
+import com.japa.Japa.dataAccess.interfaceDAO.IProductDAO;
 import com.japa.Japa.dataAccess.repository.CategoryRepository;
 import com.japa.Japa.dataAccess.repository.HierarchyRepository;
 import com.japa.Japa.dataAccess.repository.ProductRepository;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 @Transactional
 @Service
 
-public class ProductDAO {
+public class ProductDAO implements IProductDAO {
     private ProductRepository productRepository;
     private CategoryRepository categoryRepository;
     private HierarchyRepository hierarchyRepository;
@@ -31,10 +32,10 @@ public class ProductDAO {
         this.providerConverter = providerConverter;
     }
 
-    public Product getProductById(int id, String language){
+    public Product getProductById(int id ){
         List<ProductEntity> productEntities = productRepository.findAll();
         ProductEntity product = productEntities.stream().filter(productEntity -> productEntity.getProduct_id() == id).findFirst().orElse(null);
-        return providerConverter.productEntityToProductModel(product, language);
+        return providerConverter.productEntityToProductModel(product);
     }
 
     public ProductEntity getProductEntityById(int id){
@@ -43,7 +44,7 @@ public class ProductDAO {
         return product;
     }
 
-    public List<Product> getAllProductsOfMainCategory(String mainCategory, String language){
+    public List<Product> getAllProductsOfMainCategory(String mainCategory){
         List<Product> products = new ArrayList<>();
         List<ProductEntity> filteredProductEntities = new ArrayList<>();
         List<ProductEntity> productEntities = productRepository.findAll();
@@ -63,17 +64,17 @@ public class ProductDAO {
         }
 
         for (ProductEntity productEntity : filteredProductEntities) {
-            products.add(providerConverter.productEntityToProductModel(productEntity,language));
+            products.add(providerConverter.productEntityToProductModel(productEntity));
         }
 
         return products;
     }
 
-    public List<Product> getProductsBySubCategory(String mainCategory, String Subcategory, String language){
+    public List<Product> getProductsBySubCategory(String mainCategory, String Subcategory){
         List<Product> products = new ArrayList<>();
         List<ProductEntity> categoryProductEntities = getProductsOfSubCategory(mainCategory,Subcategory);
         for(ProductEntity productEntity : categoryProductEntities){
-            products.add(providerConverter.productEntityToProductModel(productEntity, language));
+            products.add(providerConverter.productEntityToProductModel(productEntity));
         }
         return products;
     }

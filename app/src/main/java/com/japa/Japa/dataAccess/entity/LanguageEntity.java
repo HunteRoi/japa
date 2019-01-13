@@ -13,6 +13,8 @@ public class LanguageEntity {
     private Integer language_id;
     @Column
     private String name;
+    @Column
+    private String code;
 
     public LanguageEntity(){}
 
@@ -30,5 +32,13 @@ public class LanguageEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

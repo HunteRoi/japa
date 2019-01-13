@@ -2,6 +2,7 @@ package com.japa.Japa.dataAccess.dao;
 
 import com.japa.Japa.dataAccess.entity.CategoryEntity;
 import com.japa.Japa.dataAccess.entity.HierarchyEntity;
+import com.japa.Japa.dataAccess.interfaceDAO.ICategoryDAO;
 import com.japa.Japa.dataAccess.repository.CategoryRepository;
 import com.japa.Japa.dataAccess.repository.HierarchyRepository;
 import com.japa.Japa.dataAccess.util.ProviderConverter;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Transactional
 @Service
-public class CategoryDAO {
+public class CategoryDAO implements ICategoryDAO {
     private CategoryRepository categoryRepository;
     private HierarchyRepository hierarchyRepository;
     private ProviderConverter providerConverter;

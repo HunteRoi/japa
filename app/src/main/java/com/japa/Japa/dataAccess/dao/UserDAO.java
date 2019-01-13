@@ -1,6 +1,7 @@
 package com.japa.Japa.dataAccess.dao;
 
 import com.japa.Japa.dataAccess.entity.UserEntity;
+import com.japa.Japa.dataAccess.interfaceDAO.IUserDAO;
 import com.japa.Japa.dataAccess.repository.UserRepository;
 import com.japa.Japa.dataAccess.util.ProviderConverter;
 import com.japa.Japa.model.User;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Transactional
 @Service
-public class UserDAO {
+public class UserDAO implements IUserDAO {
     private UserRepository userRepository;
     private ProviderConverter providerConverter;
 

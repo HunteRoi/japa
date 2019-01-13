@@ -14,6 +14,7 @@
         <script src='<spring:url value="https://code.jquery.com/jquery-3.3.1.slim.min.js"/>'></script>
         <script src='<spring:url value="/js/bootstrap.min.js"/>'></script>
         <script src='<spring:url value="/js/anchor.min.js"/>'></script>
+        <script src='<spring:url value="/js/main.js"/>'></script>
         <!--<script src='<spring:url value="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js"/>'></script>-->
         <script src='<spring:url value="/js/popper.min.js"/>'></script>
 
@@ -33,13 +34,13 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a class="big-a nav-link active" href='<spring:url value="/home"/>'><spring:message code="home"/> <span class="sr-only">(current)</span></a>
+                            <a class="big-a nav-link" href='<spring:url value="/home"/>' onclick="swapActive()"><spring:message code="home"/></a>
                         </li>
                         <c:forEach var="category" items="${categories}">
                             <c:choose>
                                 <c:when test="${!category.getHasNoChildren()}">
                                     <li class="nav-item dropdown clickable">
-                                        <a class="big-a nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">${category.getName()}</a>
+                                        <a class="big-a nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" onclick="swapActive()">${category.getName()}</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <c:forEach var="subCategory" items="${category.getSubCategories()}">
                                                 <a class="big-a dropdown-item" href='<spring:url value="/category/${category.getNormalizedName()}/${subCategory.getNormalizedName()}"/>'>${subCategory.getName()}</a>
@@ -48,7 +49,7 @@
                                     </li>
                                 </c:when>
                                 <c:otherwise>
-                                    <a class="big-a nav-link" href='<spring:url value="/category/${category.getNormalizedName()}"/>' role="button" aria-expanded="false" aria-haspopup="false">${category.getName()}</a>
+                                    <a class="big-a nav-link" href='<spring:url value="/category/${category.getNormalizedName()}"/>' role="button" aria-expanded="false" aria-haspopup="false" onclick="swapActive()">${category.getName()}</a>
                                 </c:otherwise>
                             </c:choose>
                         </c:forEach>

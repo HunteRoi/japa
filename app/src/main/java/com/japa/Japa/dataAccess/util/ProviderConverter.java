@@ -1,13 +1,10 @@
 package com.japa.Japa.dataAccess.util;
 
-import com.japa.Japa.dataAccess.dao.ProductDAO;
 import com.japa.Japa.dataAccess.entity.*;
 import com.japa.Japa.model.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -22,19 +19,18 @@ public class ProviderConverter {
         return category;
     }
 
-    public Product productEntityToProductModel(ProductEntity productEntity, String language){
+    public Product productEntityToProductModel(ProductEntity productEntity){
         Product product = new Product();
-        ProductTranslationEntity translation = new ProductTranslationEntity();
-
         Collection<ProductTranslationEntity> translationEntities = productEntity.getTranslationEntities();
-        if(language.equals("en")) translation = translationEntities.stream().filter(translationEntity -> translationEntity.getLanguage().getName().equals("English")).findFirst().orElse(null);
-        else if(language.equals("fr")) translation = translationEntities.stream().filter(translationEntity -> translationEntity.getLanguage().getName().equals("Français")).findFirst().orElse(null);
+
+        for(ProductTranslationEntity productTranslationEntity : translationEntities){
+            product.getNames().put(productTranslationEntity.getLanguage().getCode(), productTranslationEntity.getName());
+            product.getDescriptions().put(productTranslationEntity.getLanguage().getCode(), productTranslationEntity.getDescription());
+        }
 
         product.setProductPrice(productEntity.getProduct_price());
         product.setImageUrl(productEntity.getImage_url());
         product.setId(productEntity.getProduct_id());
-        product.setName(translation.getName());
-        product.setDescription(translation.getDescription());
         product.setCategory(categoryEntityToCategoryModel(productEntity.getCategory()));
         return  product;
     }
@@ -50,10 +46,10 @@ public class ProviderConverter {
         return orderEntity;
     }
 
-    public Promo promoEntityToPromoModel(PromoEntity promoEntity, String language){
+    public Promo promoEntityToPromoModel(PromoEntity promoEntity){
         Promo promo = new Promo();
         promo.setPromotion(promotionEntityToPromotionModel(promoEntity.getPromotion()));
-        promo.setProduct(productEntityToProductModel(promoEntity.getProduct(), language));
+        promo.setProduct(productEntityToProductModel(promoEntity.getProduct()));
         return promo;
     }
 

@@ -23,7 +23,7 @@
                                         <img class="imgCar" src="${commandLine.getProduct().getImageUrl()}" alt="IMG-PRODUCT">
                                     </div>
                                 </td>
-                                <td class="column-2">${commandLine.getProduct().getName()}</td>
+                                <td class="column-2">${commandLine.getProduct().getNameByLanguage(languageCode)}</td>
                                 <td class="column-1">${commandLine.getFormatedUnitPrice()}€</td>
                                 <td class="column-1">${commandLine.getFormatedUnitDiscountPrice()}€</td>
                                 <td class="column-1">

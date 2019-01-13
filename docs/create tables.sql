@@ -83,7 +83,8 @@ CREATE TABLE `Promo` (
 
 CREATE TABLE `Language` (
 	`language_id` INT(5) UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    `name` VARCHAR(50) NOT NULL
+    `name` VARCHAR(50) NOT NULL,
+    `code` VARCHAR(5) NOT NULL
 ) ENGINE = InnoDB, DEFAULT CHARSET = utf8;
 
 CREATE TABLE `Product_translation` (
@@ -136,7 +137,7 @@ INSERT INTO `Hierarchy`(`main_category_id`,`sub_category_id`) VALUES
 (2,6),
 (2,7);
 
-INSERT INTO `Language` (`name`) VALUES ('Français'), ('English');
+INSERT INTO `Language` (`name`, `code`) VALUES ('Français', 'fr'), ('English', 'en');
    
 INSERT INTO `Product` (`product_price`, `category_id`, `image_url`) VALUES 
 (7.5,4, 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/SNote.jpg/220px-SNote.jpg'),

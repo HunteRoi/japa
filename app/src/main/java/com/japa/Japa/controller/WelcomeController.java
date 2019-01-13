@@ -21,7 +21,7 @@ public class WelcomeController extends MainController {
     @RequestMapping(value="/home", method = RequestMethod.GET)
     public String home (Model model, @ModelAttribute(value = Constants.CART) Cart shoppingCart) {
         model.addAttribute(Constants.CART, shoppingCart);
-        model.addAttribute(Constants.CATEGORIES, this.categoryDAO.getCategories());
+        model.addAttribute(Constants.CATEGORIES, categoryBusiness.getCategories());
         return "integrated:welcome";
     }
 

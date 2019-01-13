@@ -42,7 +42,7 @@ public class UserValidator implements Validator {
         }
 
         if(user.getPhoneNumber() != null && !user.getPhoneNumber().isEmpty()){
-            Pattern pattern = Pattern.compile("\\d{3,4}\\/\\d{2}\\/\\d{2}\\/\\d{2}$");
+            Pattern pattern = Pattern.compile("\\+\\d{1,4}\\s\\d{2,3}\\/\\d{2}(\\.\\d{2}){2}");
             Matcher matcher = pattern.matcher(user.getPhoneNumber());
             if(!matcher.matches()) e.rejectValue("phoneNumber","incorrectPhoneNumber");
             if(userDAO.isPhoneNumberAlreadyUsed(user.getPhoneNumber())) e.rejectValue("phoneNumber","phoneNumberAlreadyUsed");

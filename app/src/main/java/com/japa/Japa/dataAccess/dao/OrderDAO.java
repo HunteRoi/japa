@@ -1,17 +1,17 @@
 package com.japa.Japa.dataAccess.dao;
 
 import com.japa.Japa.dataAccess.entity.OrderEntity;
+import com.japa.Japa.dataAccess.interfaceDAO.IOrderDAO;
 import com.japa.Japa.dataAccess.repository.OrderRepository;
 import com.japa.Japa.dataAccess.util.ProviderConverter;
 import com.japa.Japa.model.Order;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Transactional
 @Service
-public class OrderDAO {
+public class OrderDAO implements IOrderDAO {
     private OrderRepository orderRepository;
     private ProviderConverter providerConverter;
 

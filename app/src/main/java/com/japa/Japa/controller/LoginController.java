@@ -24,7 +24,7 @@ public class LoginController extends MainController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String home (Model model, @ModelAttribute(value = Constants.CURRENT_USER)Login currentUser, @ModelAttribute(value = Constants.CART) Cart shoppingCart){
-        model.addAttribute(Constants.CATEGORIES, this.categoryDAO.getCategories());
+        model.addAttribute(Constants.CATEGORIES, categoryBusiness.getCategories());
         model.addAttribute(Constants.CART, shoppingCart);
         return "integrated:login";
     }
